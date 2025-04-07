@@ -1,4 +1,4 @@
-package com.aamagon.practica_fct_android
+package com.aamagon.practica_fct_android.ui.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
