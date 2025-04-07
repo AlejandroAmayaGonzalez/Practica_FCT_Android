@@ -51,19 +51,13 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    implementation(libs.picasso)
-
     // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
+    implementation(libs.retrofit.v290)
+    implementation(libs.converter.gson.v290)
 
-    // Coroutines
-    implementation(libs.kotlinx.coroutines.android)
-
-    // Room
-    implementation(libs.design)
-    implementation(libs.recyclerview.v7)
-    implementation(libs.runtime)
+    // ViewModel and LiveData
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     // Testing
     testImplementation(libs.junit)

@@ -1,6 +1,7 @@
 [versions]
 agp = "8.9.1"
 converterGson = "2.11.0"
+converterGsonVersion = "2.9.0"
 design = "28.0.0"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
@@ -12,11 +13,15 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 composeBom = "2025.03.01"
 picasso = "2.71828"
+retrofit = "2.9.0"
 runtime = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+converter-gson-v290 = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGsonVersion" }
 design = { module = "com.android.support:design", version.ref = "design" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -35,6 +40,7 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 recyclerview-v7 = { module = "com.android.support:recyclerview-v7", version.ref = "design" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
+retrofit-v290 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 runtime = { module = "android.arch.persistence.room:runtime", version.ref = "runtime" }
 
 [plugins]
