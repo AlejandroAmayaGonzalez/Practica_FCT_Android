@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Practica_FCT_Android</string>
+
+    <!-- Content descriptions for toolbar -->
+    <string name="contentDescBack">Icono atrás</string>
+    <string name="contentDescBills">Icono facturas</string>
+    <string name="contentDescSmart">Icono SmartSolar</string>
+
+    <!-- Routes names -->
+    <string name="homeRoute">Inicio</string>
+    <string name="billsRoute">Facturas</string>
+    <string name="smartSolarRoute">SmartSolar</string>
 </resources>

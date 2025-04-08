@@ -12,6 +12,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -31,7 +32,7 @@ fun MainToolBar(navController: NavController){
             IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
                     painter = painterResource(R.drawable.icon_arrow_back),
-                    contentDescription = "Atrás"
+                    contentDescription = stringResource(R.string.contentDescBack)
                 )
             }
         },
@@ -40,14 +41,14 @@ fun MainToolBar(navController: NavController){
             IconButton( onClick = { navController.navigate(ToolbarRoutes.BillsScreen.route) } ) {
                 Image(
                     painter = painterResource(R.drawable.icon_bill),
-                    contentDescription = "Facturas",
+                    contentDescription = stringResource(R.string.contentDescBills),
                     modifier = Modifier.height(24.dp).width(24.dp)
                 )
             }
             IconButton( onClick = { navController.navigate(ToolbarRoutes.SmartSolarScreen.route) } ) {
                 Image(
                     painter = painterResource(R.drawable.icon_smartsolar),
-                    contentDescription = "Facturas",
+                    contentDescription = stringResource(R.string.contentDescSmart),
                     modifier = Modifier.height(24.dp).width(24.dp)
                 )
             }
@@ -55,11 +56,13 @@ fun MainToolBar(navController: NavController){
     )
 }
 
+// Change the toolbar title depending on the current section
+@Composable
 fun getTitle(route: String?): String {
     return when(route){
-        "Inicio" -> "Inicio"
-        "Facturas" -> "Facturas"
-        "SmartSolar" -> "SmartSolar"
+        "Home" -> stringResource(R.string.homeRoute)
+        "Bills" -> stringResource(R.string.billsRoute)
+        "SmartSolar" -> stringResource(R.string.smartSolarRoute)
         else -> "App"
     }
 }
