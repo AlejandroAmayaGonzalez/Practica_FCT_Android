@@ -55,6 +55,7 @@ fun MainToolBar(navController: NavController){
     )
 }
 
+// Change the toolbar title depending on the current section
 fun getTitle(route: String?): String {
     return when(route){
         "Inicio" -> "Inicio"
