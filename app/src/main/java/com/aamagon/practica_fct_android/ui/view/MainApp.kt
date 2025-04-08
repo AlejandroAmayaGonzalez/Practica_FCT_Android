@@ -16,12 +16,18 @@ fun MainApp(){
     val navController = rememberNavController()
 
     Scaffold (
-        topBar = { MainToolBar(ToolbarRoutes.HomeScreen.route, navController) },
+        topBar = { MainToolBar(navController) },
         content = {
             NavHost(navController = navController, startDestination = ToolbarRoutes.HomeScreen.route){
-                composable(route = ToolbarRoutes.HomeScreen.route) { HomeScreen(navController) }
-                composable(route = ToolbarRoutes.BillsScreen.route) { BillsScreen(navController) }
-                composable(route = ToolbarRoutes.SmartSolarScreen.route) { SmartSolarScreen(navController) }
+                composable(route = ToolbarRoutes.HomeScreen.route) {
+                    HomeScreen(navController)
+                }
+                composable(route = ToolbarRoutes.BillsScreen.route) {
+                    BillsScreen(navController)
+                }
+                composable(route = ToolbarRoutes.SmartSolarScreen.route) {
+                    SmartSolarScreen(navController)
+                }
             }
         }
     )

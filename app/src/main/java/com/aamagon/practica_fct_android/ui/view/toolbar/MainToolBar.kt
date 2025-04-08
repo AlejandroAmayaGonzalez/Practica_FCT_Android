@@ -14,14 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.ui.theme.ToolbarBackground
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainToolBar(title: String, navController: NavController){
+fun MainToolBar(navController: NavController){
     TopAppBar(
-        title = { Text(text = title) },
+        title = {
+            val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+            Text(text = getTitle(currentRoute))
+        },
         navigationIcon = {
             // Go back button
             IconButton(onClick = { navController.popBackStack() }) {
@@ -49,4 +53,13 @@ fun MainToolBar(title: String, navController: NavController){
             }
         }
     )
+}
+
+fun getTitle(route: String?): String {
+    return when(route){
+        "Inicio" -> "Inicio"
+        "Facturas" -> "Facturas"
+        "SmartSolar" -> "SmartSolar"
+        else -> "App"
+    }
 }
