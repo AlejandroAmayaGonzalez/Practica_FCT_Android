@@ -51,6 +51,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    // Navigation in compose
+    implementation(libs.androidx.navigation.compose)
+
     // Retrofit
     implementation(libs.retrofit.v290)
     implementation(libs.converter.gson.v290)
