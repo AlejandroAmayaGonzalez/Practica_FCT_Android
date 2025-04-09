@@ -10,5 +10,8 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-// Toolbar background
-val ToolbarBackground = Color(0xFF2196F3)
+// MainToolbar background
+val MainToolbarBackground = Color(0xFF2196F3)
+
+// BillsToolbar background
+val BillsToolbarBackground = Color(0xFFFFFFFF)

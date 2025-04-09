@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.aamagon.practica_fct_android.R
-import com.aamagon.practica_fct_android.ui.theme.ToolbarBackground
+import com.aamagon.practica_fct_android.ui.theme.MainToolbarBackground
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +36,7 @@ fun MainToolBar(navController: NavController){
                 )
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors( containerColor = ToolbarBackground ),
+        colors = TopAppBarDefaults.topAppBarColors( containerColor = MainToolbarBackground ),
         actions = {
             IconButton( onClick = { navController.navigate(ToolbarRoutes.HomeScreen.route) } ) {
                 Image(
