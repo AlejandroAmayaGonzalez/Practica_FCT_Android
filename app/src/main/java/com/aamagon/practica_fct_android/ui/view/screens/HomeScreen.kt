@@ -1,4 +1,4 @@
-package com.aamagon.practica_fct_android.ui.view
+package com.aamagon.practica_fct_android.ui.view.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

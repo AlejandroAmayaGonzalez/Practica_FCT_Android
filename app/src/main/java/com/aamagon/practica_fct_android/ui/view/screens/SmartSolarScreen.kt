@@ -1,4 +1,4 @@
-package com.aamagon.practica_fct_android.ui.view
+package com.aamagon.practica_fct_android.ui.view.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -20,25 +20,26 @@ import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun FilterBillsScreen(navController: NavController){
+fun SmartSolarScreen(navController: NavController){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        FilterBillsContent(modifier = Modifier.padding(scafPad))
+        SmartSolarContent(modifier = Modifier.padding(scafPad))
     }
 }
 
 @Composable
-fun FilterBillsContent(modifier: Modifier = Modifier){
+fun SmartSolarContent(modifier: Modifier = Modifier){
     Column ( modifier = modifier.padding() ) {
 
         Row ( modifier = Modifier.fillMaxWidth().padding(16.dp) ){
             Text(
-                text = stringResource(R.string.filterBills),
+                text = stringResource(R.string.smartSolar),
                 fontSize = 40.sp,
                 fontWeight = FontWeight.Bold
             )
         }
     }
 }
+

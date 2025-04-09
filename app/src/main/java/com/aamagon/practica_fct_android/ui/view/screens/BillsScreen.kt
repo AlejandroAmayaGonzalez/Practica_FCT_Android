@@ -1,4 +1,4 @@
-package com.aamagon.practica_fct_android.ui.view
+package com.aamagon.practica_fct_android.ui.view.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -15,26 +15,20 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.data.model.BillModel
-import com.aamagon.practica_fct_android.ui.theme.BillsToolbarBackground
+import com.aamagon.practica_fct_android.ui.view.toolbar.BillsToolbar
 import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
-import com.aamagon.practica_fct_android.ui.view.toolbar.ToolbarRoutes
 
 @Composable
 fun BillsScreen(navController: NavController){
@@ -58,35 +52,17 @@ fun BillContent(modifier: Modifier = Modifier, navController: NavController){
             list = listOf(
                 BillModel("Pendiente de pago", 69.99, "28 Mar 2020"),
                 BillModel("", 45.55, "10 Jul 2025"),
+                BillModel("Pagada", 120.96, "6 Dec 2024"),
+                BillModel("Pendiente de pago", 69.99, "28 Mar 2020"),
+                BillModel("", 45.55, "10 Jul 2025"),
+                BillModel("Pagada", 120.96, "6 Dec 2024"),
+                BillModel("Pendiente de pago", 69.99, "28 Mar 2020"),
+                BillModel("", 45.55, "10 Jul 2025"),
                 BillModel("Pagada", 120.96, "6 Dec 2024")
             ),
             scafPad = scafPad
         )
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun BillsToolbar(navController: NavController){
-    TopAppBar(
-        title = {
-            Text(
-                text = stringResource(R.string.bills),
-                fontWeight = FontWeight.Bold,
-                fontSize = 40.sp
-            )
-        },
-        colors = TopAppBarDefaults.topAppBarColors( containerColor = BillsToolbarBackground),
-        actions = {
-            IconButton( onClick = { navController.navigate(ToolbarRoutes.FilterBillsScreen.route) } ) {
-                Image(
-                    painter = painterResource(R.drawable.icon_filter),
-                    contentDescription = stringResource(R.string.contentDescFilter),
-                    modifier = Modifier.height(40.dp).width(40.dp)
-                )
-            }
-        }
-    )
 }
 
 @Composable
