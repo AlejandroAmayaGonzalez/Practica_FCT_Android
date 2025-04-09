@@ -8,6 +8,7 @@
     <string name="contentDescSmart">Icono SmartSolar</string>
     <string name="contentDescLogoSmart">Logo SmartSolar</string>
     <string name="contentDescFilter">Icono filtrado</string>
+    <string name="contentDescDetail">Icono acceder al detalle</string>
 
     <!-- Routes names and titles -->
     <string name="home">Inicio</string>
