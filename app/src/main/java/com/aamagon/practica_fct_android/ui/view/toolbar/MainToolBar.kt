@@ -69,6 +69,7 @@ fun getTitle(route: String?): String {
     return when(route){
         "Home" -> stringResource(R.string.home)
         "Bills" -> stringResource(R.string.bills)
+        "FilterBills" -> stringResource(R.string.bills)
         "SmartSolar" -> stringResource(R.string.smartSolar)
         else -> "App"
     }

@@ -28,6 +28,9 @@ fun MainApp(){
                 composable(route = ToolbarRoutes.SmartSolarScreen.route) {
                     SmartSolarScreen(navController)
                 }
+                composable(route = ToolbarRoutes.FilterBillsScreen.route) {
+                    FilterBillsScreen(navController)
+                }
             }
         }
     )

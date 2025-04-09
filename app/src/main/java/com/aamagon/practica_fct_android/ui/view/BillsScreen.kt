@@ -34,6 +34,7 @@ import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.data.model.BillModel
 import com.aamagon.practica_fct_android.ui.theme.BillsToolbarBackground
 import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
+import com.aamagon.practica_fct_android.ui.view.toolbar.ToolbarRoutes
 
 @Composable
 fun BillsScreen(navController: NavController){
@@ -41,16 +42,16 @@ fun BillsScreen(navController: NavController){
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        BillContent(modifier = Modifier.padding(scafPad))
+        BillContent(modifier = Modifier.padding(scafPad), navController)
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun BillContent(modifier: Modifier = Modifier){
+fun BillContent(modifier: Modifier = Modifier, navController: NavController){
 
     Scaffold (
-        topBar = { BillsToolbar() },
+        topBar = { BillsToolbar(navController) },
         modifier = modifier.padding()
     ){ scafPad ->
         BillsList(
@@ -66,7 +67,7 @@ fun BillContent(modifier: Modifier = Modifier){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BillsToolbar(){
+fun BillsToolbar(navController: NavController){
     TopAppBar(
         title = {
             Text(
@@ -77,7 +78,7 @@ fun BillsToolbar(){
         },
         colors = TopAppBarDefaults.topAppBarColors( containerColor = BillsToolbarBackground),
         actions = {
-            IconButton( onClick = {  } ) {
+            IconButton( onClick = { navController.navigate(ToolbarRoutes.FilterBillsScreen.route) } ) {
                 Image(
                     painter = painterResource(R.drawable.icon_filter),
                     contentDescription = stringResource(R.string.contentDescFilter),
