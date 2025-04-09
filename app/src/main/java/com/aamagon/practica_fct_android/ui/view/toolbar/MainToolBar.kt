@@ -67,9 +67,9 @@ fun MainToolBar(navController: NavController){
 @Composable
 fun getTitle(route: String?): String {
     return when(route){
-        "Home" -> stringResource(R.string.homeRoute)
-        "Bills" -> stringResource(R.string.billsRoute)
-        "SmartSolar" -> stringResource(R.string.smartSolarRoute)
+        "Home" -> stringResource(R.string.home)
+        "Bills" -> stringResource(R.string.bills)
+        "SmartSolar" -> stringResource(R.string.smartSolar)
         else -> "App"
     }
 }

@@ -7,9 +7,11 @@
     <string name="contentDescBills">Icono facturas</string>
     <string name="contentDescSmart">Icono SmartSolar</string>
     <string name="contentDescLogoSmart">Logo SmartSolar</string>
+    <string name="contentDescFilter">Icono filtrado</string>
 
-    <!-- Routes names -->
-    <string name="homeRoute">Inicio</string>
-    <string name="billsRoute">Facturas</string>
-    <string name="smartSolarRoute">SmartSolar</string>
+    <!-- Routes names and titles -->
+    <string name="home">Inicio</string>
+    <string name="bills">Facturas</string>
+    <string name="smartSolar">SmartSolar</string>
+    <string name="filterBills">Filtrar Facturas</string>
 </resources>
