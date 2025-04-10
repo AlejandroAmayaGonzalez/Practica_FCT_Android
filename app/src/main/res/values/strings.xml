@@ -20,5 +20,15 @@
     <string name="titleDialog">Información</string>
     <string name="bodyDialog">Esta funcionalidad aún no está disponible.</string>
     <string name="dismissButton">Cerrar</string>
+    <string name="acceptDialog">Aceptar</string>
+    <string name="cancelDialog">Cancel</string>
+
+    <!-- Strings for FilterBillsScreen -->
+    <string name="titleDateFilter">Con fecha de emisión</string>
+    <string name="from">Desde:</string>
+    <string name="to">Hasta:</string>
+    
+    <!-- PLaceholders -->
+    <string name="datePickerPlaceholder">Día/Mes/Año</string>
 
 </resources>

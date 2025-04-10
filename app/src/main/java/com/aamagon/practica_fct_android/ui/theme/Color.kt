@@ -15,3 +15,6 @@ val MainToolbarBackground = Color(0xFF2196F3)
 
 // BillsToolbar background
 val BillsToolbarBackground = Color(0xFFFFFFFF)
+
+// Divider color
+val DividerColor = Color(0xFF5D5D5D)
