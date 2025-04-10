@@ -15,4 +15,10 @@
     <string name="bills">Facturas</string>
     <string name="smartSolar">SmartSolar</string>
     <string name="filterBills">Filtrar Facturas</string>
+
+    <!-- Strings for dialogs -->
+    <string name="titleDialog">Información</string>
+    <string name="bodyDialog">Esta funcionalidad aún no está disponible.</string>
+    <string name="dismissButton">Cerrar</string>
+
 </resources>

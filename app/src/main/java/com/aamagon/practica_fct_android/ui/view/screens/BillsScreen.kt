@@ -2,6 +2,7 @@ package com.aamagon.practica_fct_android.ui.view.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,10 +15,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -82,11 +87,16 @@ fun BillsList(list: List<BillModel>, scafPad: PaddingValues ){
 }
 
 @Composable
-fun BillCard(bill: BillModel, modifier: Modifier = Modifier){
+fun BillCard(bill: BillModel){
 
+    // Variable to control when the dialog is shown
+    var show = rememberSaveable { mutableStateOf(false) }
     val priceBill = bill.quantity.toString()
 
-    Card ( modifier = Modifier.height(100.dp) ) {
+    Card (
+        modifier = Modifier.height(100.dp)
+            .clickable(onClick = { show.value = true })
+    ) {
         Box ( modifier = Modifier.fillMaxWidth().padding(16.dp) ){
             Box (
                 modifier = Modifier.align(Alignment.CenterStart)
@@ -122,5 +132,37 @@ fun BillCard(bill: BillModel, modifier: Modifier = Modifier){
                 }
             }
         }
+    }
+
+    BillDialog(show.value, {show.value = false})
+}
+
+@Composable
+fun BillDialog(show: Boolean, onDismiss: () -> Unit){
+    if (show){
+        AlertDialog(
+            onDismissRequest = { onDismiss() },
+            confirmButton = {},
+            dismissButton = {
+                TextButton( onClick = { onDismiss() } ) {
+                    Text(
+                        text = stringResource(R.string.dismissButton),
+                        fontSize = 20.sp
+                    )
+                }
+            },
+            title = {
+                Text(
+                    text = stringResource(R.string.titleDialog),
+                    fontSize = 30.sp
+                )
+            },
+            text = {
+                Text(
+                    text = stringResource(R.string.bodyDialog),
+                    fontSize = 20.sp
+                )
+            }
+        )
     }
 }
