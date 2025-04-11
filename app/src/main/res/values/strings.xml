@@ -28,6 +28,14 @@
     <string name="from">Desde:</string>
     <string name="to">Hasta:</string>
     <string name="titleAmountFilter">Con un importe</string>
+    <string name="titleCheckBoxFilter">Por estado</string>
+    <string name="paid">Pagadas</string>
+    <string name="cancelled">Anuladas</string>
+    <string name="fixedFee">Cuota fija</string>
+    <string name="waitingForPayment">Pendientes de pago</string>
+    <string name="paymentPlan">Plan de pago</string>
+    <string name="applyFilters">Aplicar</string>
+    <string name="deleteFilters">Eliminar Filtros</string>
     
     <!-- PLaceholders -->
     <string name="datePickerPlaceholder">Día/Mes/Año</string>
