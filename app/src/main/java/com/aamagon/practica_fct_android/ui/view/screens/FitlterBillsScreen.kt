@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -24,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
+import com.aamagon.practica_fct_android.ui.theme.Black
+import com.aamagon.practica_fct_android.ui.theme.DatePickerBackground
 import com.aamagon.practica_fct_android.ui.theme.DividerColor
 import com.aamagon.practica_fct_android.ui.view.toolbar.FilterBillsToolbar
 import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
@@ -55,6 +58,12 @@ fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavControll
                 thickness = 1.dp,
                 modifier = Modifier.padding(top = 16.dp, start = 32.dp, end = 32.dp)
             )
+            AmountFilter()
+            HorizontalDivider(
+                color = DividerColor,
+                thickness = 1.dp,
+                modifier = Modifier.padding(top = 16.dp, start = 32.dp, end = 32.dp)
+            )
         }
     }
 }
@@ -63,7 +72,11 @@ fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavControll
 fun DateFilter(){
     Box ( modifier = Modifier.fillMaxHeight(0.2F).padding(16.dp) ){
         Box ( modifier = Modifier.fillMaxWidth().align(Alignment.TopStart)) {
-            Text( text = stringResource(R.string.titleDateFilter), fontSize = 20.sp, fontWeight = FontWeight.Bold )
+            Text(
+                text = stringResource(R.string.titleDateFilter),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
         }
         Box ( modifier = Modifier.align(Alignment.BottomStart).padding(start = 64.dp) ) {
             DateCol( desc = stringResource(R.string.from) )
@@ -84,11 +97,13 @@ fun DateCol(desc: String){
 
     Column {
         Text( text = desc )
-        Spacer( modifier = Modifier.height(8.dp) )
-        TextButton( onClick = { show.value = true } ) {
-            Text(
-                text = dateString.value
+        Spacer( modifier = Modifier.height(5.dp) )
+        TextButton( onClick = { show.value = true },
+            colors = ButtonDefaults.buttonColors(
+                contentColor = Black, containerColor = DatePickerBackground
             )
+        ) {
+            Text( text = dateString.value )
         }
     }
 
@@ -100,6 +115,17 @@ fun DateCol(desc: String){
                 show.value = false
             },
             onDismiss = { show.value = false }
+        )
+    }
+}
+
+@Composable
+fun AmountFilter(){
+    Column {
+        Text(
+            text = stringResource(R.string.titleAmountFilter),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
         )
     }
 }

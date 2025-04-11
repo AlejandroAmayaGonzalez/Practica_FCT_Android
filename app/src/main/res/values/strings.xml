@@ -27,6 +27,7 @@
     <string name="titleDateFilter">Con fecha de emisión</string>
     <string name="from">Desde:</string>
     <string name="to">Hasta:</string>
+    <string name="titleAmountFilter">Con un importe</string>
     
     <!-- PLaceholders -->
     <string name="datePickerPlaceholder">Día/Mes/Año</string>
