@@ -15,11 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -32,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.data.model.BillModel
+import com.aamagon.practica_fct_android.ui.view.dialogs.BillDialog
 import com.aamagon.practica_fct_android.ui.view.toolbar.BillsToolbar
 import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
 
@@ -135,34 +134,4 @@ fun BillCard(bill: BillModel){
     }
 
     BillDialog(show.value, {show.value = false})
-}
-
-@Composable
-fun BillDialog(show: Boolean, onDismiss: () -> Unit){
-    if (show){
-        AlertDialog(
-            onDismissRequest = { onDismiss() },
-            confirmButton = {},
-            dismissButton = {
-                TextButton( onClick = { onDismiss() } ) {
-                    Text(
-                        text = stringResource(R.string.dismissButton),
-                        fontSize = 20.sp
-                    )
-                }
-            },
-            title = {
-                Text(
-                    text = stringResource(R.string.titleDialog),
-                    fontSize = 30.sp
-                )
-            },
-            text = {
-                Text(
-                    text = stringResource(R.string.bodyDialog),
-                    fontSize = 20.sp
-                )
-            }
-        )
-    }
 }
