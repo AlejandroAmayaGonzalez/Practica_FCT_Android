@@ -10,8 +10,8 @@ import com.aamagon.practica_fct_android.ui.view.screens.BillsScreen
 import com.aamagon.practica_fct_android.ui.view.screens.FilterBillsScreen
 import com.aamagon.practica_fct_android.ui.view.screens.HomeScreen
 import com.aamagon.practica_fct_android.ui.view.screens.SmartSolarScreen
-import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
-import com.aamagon.practica_fct_android.ui.view.toolbar.ToolbarRoutes
+import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
+import com.aamagon.practica_fct_android.ui.view.navigation.ToolbarRoutes
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable

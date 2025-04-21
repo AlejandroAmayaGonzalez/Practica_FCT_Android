@@ -69,11 +69,39 @@ fun DatePickerDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = { onDismiss }) {
+            TextButton(onClick = { onDismiss() }) {
                 Text(text = stringResource(R.string.cancelDialog))
             }
         }
     ) {
         DatePicker(state = datePickerState)
     }
+}
+
+@Composable
+fun InfoAboutStateDialog(onDismiss: () -> Unit){
+    AlertDialog(
+        onDismissRequest = { onDismiss() },
+        confirmButton = {
+            TextButton( onClick = { onDismiss() } ) {
+                Text(
+                    text = stringResource(R.string.acceptDialog),
+                    fontSize = 20.sp
+                )
+            }
+        },
+        dismissButton = {},
+        title = {
+            Text(
+                text = stringResource(R.string.detailTitle),
+                fontSize = 30.sp
+            )
+        },
+        text = {
+            Text(
+                text = stringResource(R.string.detailBody),
+                fontSize = 15.sp,
+            )
+        }
+    )
 }

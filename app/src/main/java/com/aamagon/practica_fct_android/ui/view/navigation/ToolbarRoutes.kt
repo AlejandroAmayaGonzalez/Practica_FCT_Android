@@ -1,4 +1,4 @@
-package com.aamagon.practica_fct_android.ui.view.toolbar
+package com.aamagon.practica_fct_android.ui.view.navigation
 
 sealed class ToolbarRoutes (val route: String ) {
     object HomeScreen: ToolbarRoutes("Home")

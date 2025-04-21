@@ -31,8 +31,8 @@ import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.data.model.BillModel
 import com.aamagon.practica_fct_android.ui.view.dialogs.BillDialog
-import com.aamagon.practica_fct_android.ui.view.toolbar.BillsToolbar
-import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
+import com.aamagon.practica_fct_android.ui.view.navigation.BillsToolbar
+import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 
 @Composable
 fun BillsScreen(navController: NavController){

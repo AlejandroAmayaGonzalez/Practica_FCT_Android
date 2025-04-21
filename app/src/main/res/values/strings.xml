@@ -9,11 +9,14 @@
     <string name="contentDescLogoSmart">Logo SmartSolar</string>
     <string name="contentDescFilter">Icono filtrado</string>
     <string name="contentDescDetail">Icono acceder al detalle</string>
+    <string name="contentDescGraph1">Gráfico de mi instalación</string>
+    <string name="contentDescGraph2">Gráfico de energía</string>
+    <string name="contentDescInfo">Icono Información</string>
 
     <!-- Routes names and titles -->
     <string name="home">Inicio</string>
     <string name="bills">Facturas</string>
-    <string name="smartSolar">SmartSolar</string>
+    <string name="smartSolar">Smart Solar</string>
     <string name="filterBills">Filtrar Facturas</string>
 
     <!-- Strings for dialogs -->
@@ -22,6 +25,11 @@
     <string name="dismissButton">Cerrar</string>
     <string name="acceptDialog">Aceptar</string>
     <string name="cancelDialog">Cancel</string>
+    <string name="detailTitle">Estado solicitud de autoconsumo</string>
+    <string name="detailBody">
+        El tiempo estimado de activación de tu autoconsumo es de 1 a 2 meses,
+        este variará en función de tu comunidad autónoma y distribuidora.
+    </string>
 
     <!-- Strings for FilterBillsScreen -->
     <string name="titleDateFilter">Con fecha de emisión</string>
@@ -36,7 +44,23 @@
     <string name="paymentPlan">Plan de pago</string>
     <string name="applyFilters">Aplicar</string>
     <string name="deleteFilters">Eliminar Filtros</string>
-    
+
+    <!-- Strings for SmartSolarScreen -->
+    <string name="myInstallDesc">
+        Aquí tienes los datos de tu instalación
+        fotovoltaica en tiepo real.
+    </string>
+    <string name="energyDesc">
+        Estamos trabajando en mejorar la app. Tus paneles solares
+        siguen produciendo, en breve podrás seguir viendo tu
+        producción solar. Sentimos las molestias.
+    </string>
+    <string name="labelCAU">CAU (Código Autoconsumo)</string>
+    <string name="labelState">Estado solicitud alta de consumidor</string>
+    <string name="labelType">Tipo autoconsumo</string>
+    <string name="labelExcess">Compensación de excedentes</string>
+    <string name="labelPower">Potencia de instalación</string>
+
     <!-- PLaceholders -->
     <string name="datePickerPlaceholder">Día/Mes/Año</string>
 

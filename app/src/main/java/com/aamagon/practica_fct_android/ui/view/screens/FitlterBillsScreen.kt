@@ -24,8 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -40,8 +38,8 @@ import com.aamagon.practica_fct_android.ui.theme.DatePickerBackground
 import com.aamagon.practica_fct_android.ui.theme.DividerColor
 import com.aamagon.practica_fct_android.ui.theme.LightGreen
 import com.aamagon.practica_fct_android.ui.theme.MainToolbarBackground
-import com.aamagon.practica_fct_android.ui.view.toolbar.FilterBillsToolbar
-import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
+import com.aamagon.practica_fct_android.ui.view.navigation.FilterBillsToolbar
+import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.view.dialogs.DatePickerDialog
 import kotlin.math.roundToInt
 
@@ -228,47 +226,10 @@ fun FilterButtons(states: States) {
             Text( text = stringResource(R.string.applyFilters) )
         }
         Button(
-            onClick = { states.resetValues() },
+            onClick = { states.resetFilterValues() },
             colors = ButtonDefaults.buttonColors(containerColor = DatePickerBackground)
         ) {
             Text( text = stringResource(R.string.deleteFilters) )
         }
-    }
-}
-
-class States {
-    // States for DatePicker
-    var showFrom = mutableStateOf(false)
-    var showTo = mutableStateOf(false)
-    var selectedDateFrom = mutableStateOf<Long?>(null)
-    var dateStringFrom = mutableStateOf("Día/Mes/Año")
-    var selectedDateTo = mutableStateOf<Long?>(null)
-    var dateStringTo = mutableStateOf("Día/Mes/Año")
-
-    // State to control the Slider
-    var sliderPos = mutableFloatStateOf(0F)
-
-    // States for each CheckBox
-    var paidChecked = mutableStateOf(false)
-    var cancelledChecked = mutableStateOf(false)
-    var fixedFeeChecked = mutableStateOf(false)
-    var waitingChecked = mutableStateOf(false)
-    var paymentPlanChecked = mutableStateOf(false)
-
-    fun resetValues(){
-        showFrom.value = false
-        showTo.value = false
-        selectedDateFrom.value = null
-        dateStringFrom.value = "Día/Mes/Año"
-        selectedDateTo.value = null
-        dateStringTo.value = "Día/Mes/Año"
-
-        sliderPos.floatValue = 0f
-
-        paidChecked.value = false
-        cancelledChecked.value = false
-        fixedFeeChecked.value = false
-        waitingChecked.value = false
-        paymentPlanChecked.value = false
     }
 }

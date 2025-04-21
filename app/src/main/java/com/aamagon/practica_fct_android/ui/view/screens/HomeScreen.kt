@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
-import com.aamagon.practica_fct_android.ui.view.toolbar.MainToolBar
+import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 
 @Composable
 fun HomeScreen(navController: NavController){
