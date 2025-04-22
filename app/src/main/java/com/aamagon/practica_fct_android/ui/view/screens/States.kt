@@ -1,8 +1,6 @@
 package com.aamagon.practica_fct_android.ui.view.screens
 
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 
 class States {
@@ -31,9 +29,6 @@ class States {
     var type = mutableStateOf("")
     var excessCompensation = mutableStateOf("")
     var power = mutableStateOf("")
-
-    // State DetailTab Dialog
-    var showDetailDialog = mutableStateOf(false)
 
     fun resetFilterValues(){
         showFrom.value = false
