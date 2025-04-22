@@ -10,8 +10,8 @@ class BillsRepository {
     lateinit var billsList: BillsListModel
 
     suspend fun getAllBills(): BillsListModel{
-        val reponse = api.getBills()
-        billsList = reponse
-        return reponse
+        val response = api.getBills()
+        billsList = response
+        return response
     }
 }

@@ -7,5 +7,5 @@ class GetBillsUseCase {
 
     private val repository = BillsRepository()
 
-    suspend operator fun invoke(): List<BillModel> = repository.billsList.bills
+    suspend operator fun invoke(): List<BillModel> = repository.getAllBills().bills
 }
