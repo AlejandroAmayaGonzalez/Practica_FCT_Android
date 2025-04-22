@@ -13,7 +13,7 @@ class BillsViewModel: ViewModel() {
 
     var getBillsUseCase = GetBillsUseCase()
 
-    fun onCreate(){
+    init {
         viewModelScope.launch {
             val result = getBillsUseCase()
 
@@ -22,5 +22,4 @@ class BillsViewModel: ViewModel() {
             }
         }
     }
-
 }

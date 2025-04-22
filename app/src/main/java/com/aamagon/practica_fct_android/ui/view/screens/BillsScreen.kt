@@ -33,37 +33,31 @@ import com.aamagon.practica_fct_android.data.model.BillModel
 import com.aamagon.practica_fct_android.ui.view.dialogs.BillDialog
 import com.aamagon.practica_fct_android.ui.view.navigation.BillsToolbar
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
+import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 
 @Composable
-fun BillsScreen(navController: NavController){
+fun BillsScreen(navController: NavController, billsViewModel: BillsViewModel){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        BillContent(modifier = Modifier.padding(scafPad), navController)
+        BillContent(modifier = Modifier.padding(scafPad), navController, billsViewModel)
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun BillContent(modifier: Modifier = Modifier, navController: NavController){
-
+fun BillContent(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    billsViewModel: BillsViewModel
+){
     Scaffold (
         topBar = { BillsToolbar(navController) },
         modifier = modifier.padding()
     ){ scafPad ->
         BillsList(
-            list = listOf(
-                BillModel("Pendiente de pago", 69.99, "28 Mar 2020"),
-                BillModel("", 45.55, "10 Jul 2025"),
-                BillModel("Pagada", 120.96, "6 Dec 2024"),
-                BillModel("Pendiente de pago", 69.99, "28 Mar 2020"),
-                BillModel("", 45.55, "10 Jul 2025"),
-                BillModel("Pagada", 120.96, "6 Dec 2024"),
-                BillModel("Pendiente de pago", 69.99, "28 Mar 2020"),
-                BillModel("", 45.55, "10 Jul 2025"),
-                BillModel("Pagada", 120.96, "6 Dec 2024")
-            ),
+            list = billsViewModel.billsList.value ?: emptyList(),
             scafPad = scafPad
         )
     }
