@@ -3,7 +3,7 @@ package com.aamagon.practica_fct_android.data.model
 import com.google.gson.annotations.SerializedName
 
 data class BillModel (
-    @SerializedName("status") val status: String,
-    @SerializedName("quantity") val quantity: Double,
-    @SerializedName("date") val date: String
+    @SerializedName("descEstado") val status: String,
+    @SerializedName("importeOrdenacion") val quantity: Double,
+    @SerializedName("fecha") val date: String
 )
