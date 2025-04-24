@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetroFitHelper {
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://viewnextandroid.mocklab.io/")
+            .baseUrl("https://d869b751-7eb6-44b9-8db5-33f51b4f1d7a.mock.pstmn.io/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
