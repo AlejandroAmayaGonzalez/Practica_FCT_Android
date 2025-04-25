@@ -12,7 +12,9 @@ import androidx.compose.ui.Modifier
 import com.aamagon.practica_fct_android.ui.theme.Practica_FCT_AndroidTheme
 import com.aamagon.practica_fct_android.ui.view.MainApp
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

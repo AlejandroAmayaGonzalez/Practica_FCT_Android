@@ -2,7 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    // Necessary for Room
     id("com.google.devtools.ksp")
+    // Necessary for Dagger Hilt
+    alias (libs.plugins.hilt.application)
 }
 
 android {
@@ -66,6 +69,11 @@ dependencies {
     // Room
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    // Hilt
+    implementation (libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation (libs.hilt.navigation.compose)
 
     // Testing
     testImplementation(libs.junit)

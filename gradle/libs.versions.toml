@@ -17,6 +17,8 @@ picasso = "2.71828"
 retrofit = "2.11.0"
 roomCompiler = "2.7.1"
 runtime = "1.1.1"
+hiltVersion = "2.51.1"
+hiltNavigationVersion = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,9 +49,14 @@ recyclerview-v7 = { module = "com.android.support:recyclerview-v7", version.ref 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
 retrofit-v290 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 runtime = { module = "android.arch.persistence.room:runtime", version.ref = "runtime" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationVersion" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltVersion" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+hilt-application = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
 
