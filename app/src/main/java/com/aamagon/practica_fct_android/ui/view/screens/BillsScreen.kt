@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
-import com.aamagon.practica_fct_android.data.model.BillModel
+import com.aamagon.practica_fct_android.domain.model.Bill
 import com.aamagon.practica_fct_android.ui.view.dialogs.BillDialog
 import com.aamagon.practica_fct_android.ui.view.navigation.BillsToolbar
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
@@ -64,7 +64,7 @@ fun BillContent(
 }
 
 @Composable
-fun BillsList(list: List<BillModel>, scafPad: PaddingValues ){
+fun BillsList(list: List<Bill>, scafPad: PaddingValues ){
     LazyColumn (
         modifier = Modifier.fillMaxSize()
             .padding(scafPad)
@@ -80,7 +80,7 @@ fun BillsList(list: List<BillModel>, scafPad: PaddingValues ){
 }
 
 @Composable
-fun BillCard(bill: BillModel){
+fun BillCard(bill: Bill){
 
     // Variable to control when the dialog is shown
     var show = rememberSaveable { mutableStateOf(false) }

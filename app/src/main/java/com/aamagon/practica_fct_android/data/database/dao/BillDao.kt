@@ -14,4 +14,7 @@ interface BillDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(bills: List<BillEntity>)
+
+    @Query("DELETE FROM bills_table")
+    suspend fun deleteBills()
 }
