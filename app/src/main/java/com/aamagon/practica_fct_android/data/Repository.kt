@@ -3,17 +3,25 @@ package com.aamagon.practica_fct_android.data
 import com.aamagon.practica_fct_android.core.extensions.toDomain
 import com.aamagon.practica_fct_android.data.database.dao.BillDao
 import com.aamagon.practica_fct_android.data.database.entities.BillEntity
-import com.aamagon.practica_fct_android.data.network.ApiService
+import com.aamagon.practica_fct_android.data.network.bills.BillsApiService
+import com.aamagon.practica_fct_android.data.network.detail.DetailApiService
 import com.aamagon.practica_fct_android.domain.model.BillsList
+import com.aamagon.practica_fct_android.domain.model.Detail
 import javax.inject.Inject
 
-class BillsRepository @Inject constructor(
-    private val api: ApiService,
+class Repository @Inject constructor(
+    private val billApi: BillsApiService,
+    private val detailApi: DetailApiService,
     private val billDao: BillDao
 ) {
 
     suspend fun getAllBillsFromApi(): BillsList{
-        val response = api.getBills()
+        val response = billApi.getBills()
+        return response.toDomain()
+    }
+
+    suspend fun getDetailFromApi(): Detail{
+        val response = detailApi.getDetail()
         return response.toDomain()
     }
 

@@ -1,11 +1,11 @@
 package com.aamagon.practica_fct_android.domain
 
 import com.aamagon.practica_fct_android.core.extensions.toDatabase
-import com.aamagon.practica_fct_android.data.BillsRepository
+import com.aamagon.practica_fct_android.data.Repository
 import com.aamagon.practica_fct_android.domain.model.Bill
 import javax.inject.Inject
 
-class GetBillsUseCase @Inject constructor(private val repository: BillsRepository) {
+class GetBillsUseCase @Inject constructor(private val repository: Repository) {
     suspend operator fun invoke(): List<Bill>{
         val billsList = repository.getAllBillsFromApi()
 
