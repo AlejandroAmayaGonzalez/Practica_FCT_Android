@@ -1,7 +1,6 @@
 package com.aamagon.practica_fct_android.ui.view.screens
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -32,13 +32,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
+import com.aamagon.practica_fct_android.domain.model.Detail
 import com.aamagon.practica_fct_android.ui.theme.DividerColor
 import com.aamagon.practica_fct_android.ui.theme.White
 import com.aamagon.practica_fct_android.ui.view.dialogs.InfoAboutStateDialog
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.view.navigation.TabsRoutes
+import com.aamagon.practica_fct_android.ui.viewmodel.DetailViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -144,15 +147,15 @@ fun Energy(){
 }
 @Preview
 @Composable
-fun Detail(){
+fun Detail(detailViewModel: DetailViewModel = hiltViewModel()){
 
-    val states = States()
     var show = rememberSaveable { mutableStateOf(false) }
+    val detail = detailViewModel.detail.observeAsState(Detail("","","","",""))
 
     Column ( modifier = Modifier.padding(16.dp) ) {
         TextField(
-            value = states.cau.value,
-            onValueChange = { states.cau.value = it },
+            value = detail.value.cau,
+            onValueChange = {},
             label = { Text( text = stringResource(R.string.labelCAU) ) },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = White,
@@ -164,14 +167,13 @@ fun Detail(){
         Spacer( modifier = Modifier.height(20.dp) )
 
         TextField(
-            value = states.membershipState.value,
-            onValueChange = { states.membershipState.value = it },
+            value = detail.value.state,
+            onValueChange = {},
             label = { Text( text = stringResource(R.string.labelState) ) },
             trailingIcon = {
                 IconButton(
                     onClick = {
                         show.value = true
-                        Log.e("Prueba", "valor = ${show.value}")
                     }
                 ){
                     Icon(
@@ -191,8 +193,8 @@ fun Detail(){
         Spacer( modifier = Modifier.height(20.dp) )
 
         TextField(
-            value = states.type.value,
-            onValueChange = { states.type.value = it },
+            value = detail.value.type,
+            onValueChange = {},
             label = { Text( text = stringResource(R.string.labelType) ) },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = White,
@@ -204,8 +206,8 @@ fun Detail(){
         Spacer( modifier = Modifier.height(20.dp) )
 
         TextField(
-            value = states.excessCompensation.value,
-            onValueChange = { states.excessCompensation.value = it },
+            value = detail.value.compensation,
+            onValueChange = {},
             label = { Text( text = stringResource(R.string.labelExcess) ) },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = White,
@@ -217,8 +219,8 @@ fun Detail(){
         Spacer( modifier = Modifier.height(20.dp) )
 
         TextField(
-            value = states.power.value,
-            onValueChange = { states.power.value = it },
+            value = detail.value.power,
+            onValueChange = {},
             label = { Text( text = stringResource(R.string.labelPower) ) },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = White,

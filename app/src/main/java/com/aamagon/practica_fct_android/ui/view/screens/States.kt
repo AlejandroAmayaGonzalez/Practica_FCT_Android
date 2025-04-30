@@ -23,13 +23,6 @@ class States {
     var waitingChecked = mutableStateOf(false)
     var paymentPlanChecked = mutableStateOf(false)
 
-    // States for DetailTab in SmartSolar
-    var cau = mutableStateOf("")
-    var membershipState = mutableStateOf("")
-    var type = mutableStateOf("")
-    var excessCompensation = mutableStateOf("")
-    var power = mutableStateOf("")
-
     fun resetFilterValues(){
         showFrom.value = false
         showTo.value = false
