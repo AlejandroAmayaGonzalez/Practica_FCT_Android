@@ -4,14 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.aamagon.practica_fct_android.ui.theme.Practica_FCT_AndroidTheme
 import com.aamagon.practica_fct_android.ui.view.MainApp
-import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,15 +18,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val billsViewModel by viewModels<BillsViewModel>()
-
         setContent {
             Practica_FCT_AndroidTheme {
                 Surface(
                     modifier = Modifier.Companion.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainApp(billsViewModel)
+                    MainApp()
                 }
             }
         }
