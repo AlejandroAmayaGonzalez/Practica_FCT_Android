@@ -150,6 +150,7 @@ fun Energy(){
 fun Detail(detailViewModel: DetailViewModel = hiltViewModel()){
 
     var show = rememberSaveable { mutableStateOf(false) }
+    // Access to detail fields
     val detail = detailViewModel.detail.observeAsState(Detail("","","","",""))
 
     Column ( modifier = Modifier.padding(16.dp) ) {

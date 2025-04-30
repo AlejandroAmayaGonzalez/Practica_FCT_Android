@@ -1,5 +1,6 @@
 package com.aamagon.practica_fct_android.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,14 +15,15 @@ class BillsViewModel @Inject constructor(
     private val getBillsUseCase: GetBillsUseCase
 ): ViewModel() {
 
-    val billsList = MutableLiveData<List<Bill>>()
+    private val _billsList = MutableLiveData<List<Bill>>()
+    val billsList: LiveData<List<Bill>> = _billsList
 
     init {
         viewModelScope.launch {
             val result = getBillsUseCase()
 
             if (result.isNotEmpty()){
-                billsList.postValue(result)
+                _billsList.postValue(result)
             }
         }
     }

@@ -19,6 +19,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -27,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.domain.model.Bill
@@ -36,12 +38,12 @@ import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 
 @Composable
-fun BillsScreen(navController: NavController, billsViewModel: BillsViewModel){
+fun BillsScreen(navController: NavController){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        BillContent(modifier = Modifier.padding(scafPad), navController, billsViewModel)
+        BillContent(modifier = Modifier.padding(scafPad), navController)
     }
 }
 
@@ -50,27 +52,28 @@ fun BillsScreen(navController: NavController, billsViewModel: BillsViewModel){
 fun BillContent(
     modifier: Modifier = Modifier,
     navController: NavController,
-    billsViewModel: BillsViewModel
 ){
     Scaffold (
         topBar = { BillsToolbar(navController) },
         modifier = modifier.padding()
     ){ scafPad ->
         BillsList(
-            list = billsViewModel.billsList.value ?: emptyList(),
             scafPad = scafPad
         )
     }
 }
 
 @Composable
-fun BillsList(list: List<Bill>, scafPad: PaddingValues ){
+fun BillsList(billsViewModel: BillsViewModel = hiltViewModel(), scafPad: PaddingValues ){
+
+    val billList = billsViewModel.billsList.observeAsState(emptyList())
+
     LazyColumn (
         modifier = Modifier.fillMaxSize()
             .padding(scafPad)
             .padding(16.dp)
     ){
-        items (list) { bill ->
+        items (billList.value) { bill ->
             BillCard(
                 bill = bill
             )

@@ -21,28 +21,7 @@ class DetailViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val result = getDetailUseCase()
-
-            checkValues(result)
-
             _detailItem.postValue(result)
         }
-    }
-
-    fun getDetail(): Detail?{
-        return detail.value
-    }
-
-    fun checkValues(result: Detail) {
-        println(result.cau)
-        println(result.state)
-        println(result.type)
-        println(result.compensation)
-        println(result.power)
-
-        println(_detailItem.value?.cau)
-        println(_detailItem.value?.state)
-        println(_detailItem.value?.type)
-        println(_detailItem.value?.compensation)
-        println(_detailItem.value?.power)
     }
 }
