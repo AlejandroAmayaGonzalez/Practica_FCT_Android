@@ -45,6 +45,13 @@
     <string name="applyFilters">Aplicar</string>
     <string name="deleteFilters">Eliminar Filtros</string>
 
+    <!-- Types of bills -->
+    <string name="filPaid">Pagada</string>
+    <string name="filCancel">Anulada</string>
+    <string name="filFixed">Cuota fija</string>
+    <string name="filWaiting">Pendiente de pago</string>
+    <string name="filPlan">Plan de pago</string>
+
     <!-- Strings for SmartSolarScreen -->
     <string name="myInstallDesc">
         Aquí tienes los datos de tu instalación
@@ -62,6 +69,6 @@
     <string name="labelPower">Potencia de instalación</string>
 
     <!-- PLaceholders -->
-    <string name="datePickerPlaceholder">Día/Mes/Año</string>
+    <string name="datePlaceholder">Día/Mes/Año</string>
 
 </resources>

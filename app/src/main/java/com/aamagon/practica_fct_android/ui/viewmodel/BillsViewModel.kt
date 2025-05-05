@@ -21,12 +21,14 @@ class BillsViewModel @Inject constructor(
     private val _billsList = MutableLiveData<List<Bill>>()
     val billsList: LiveData<List<Bill>> = _billsList
 
-    private val _appliedFilters = MutableLiveData<Boolean>()
-    val appliedFilters: LiveData<Boolean> = _appliedFilters
+    // An instance to save the first list received
+    private var original = emptyList<Bill>()
 
     init {
         viewModelScope.launch {
             val result = getBillsUseCase()
+
+            original = result
 
             if (result.isNotEmpty()){
                 _billsList.postValue(result)
@@ -38,14 +40,12 @@ class BillsViewModel @Inject constructor(
         viewModelScope.launch {
             val result = filterBillsUseCase(states)
 
-            applied(true)
-
             _billsList.postValue(result)
         }
     }
 
-    fun applied(value: Boolean){
-        _appliedFilters.postValue(value)
+    fun reset(){
+        _billsList.postValue(original)
     }
 
 }
