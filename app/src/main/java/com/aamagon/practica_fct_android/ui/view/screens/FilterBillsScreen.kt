@@ -223,7 +223,7 @@ fun FilterButtons(states: States, billsViewModel: BillsViewModel) {
     ) {
         Button(
             onClick = {
-                billsViewModel.applyFilters()
+                billsViewModel.applyFilters(states)
             },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
         ) {

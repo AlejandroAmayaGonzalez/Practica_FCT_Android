@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.aamagon.practica_fct_android.domain.FilterBillsUseCase
 import com.aamagon.practica_fct_android.domain.GetBillsUseCase
 import com.aamagon.practica_fct_android.domain.model.Bill
+import com.aamagon.practica_fct_android.ui.view.screens.States
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,9 +34,9 @@ class BillsViewModel @Inject constructor(
         }
     }
 
-    fun applyFilters(){
+    fun applyFilters(states: States){
         viewModelScope.launch {
-            val result = filterBillsUseCase()
+            val result = filterBillsUseCase(states)
 
             applied(true)
 

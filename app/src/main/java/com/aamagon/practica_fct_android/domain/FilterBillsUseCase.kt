@@ -13,14 +13,15 @@ import javax.inject.Inject
 
 class FilterBillsUseCase @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val states: States,
     private val repository: Repository
 ) {
 
-    suspend operator fun invoke(): List<Bill> {
+    suspend operator fun invoke(states: States): List<Bill> {
 
         var list = repository.getAllBillsFromDatabase().bills
-        val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
+        list.filter { it.status == context.getString(R.string.paid) }
+        /*val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
         // Date filter
         if (states.dateStringFrom.value == "Día/Mes/Año" && states.dateStringTo.value == "Día/Mes/Año"){
@@ -69,9 +70,10 @@ class FilterBillsUseCase @Inject constructor(
         }
         if (states.paymentPlanChecked.value){
             list.filter { it.status == context.getString(R.string.paymentPlan) }
-        }
+        }*/
 
-        Log.e("BD", "{${list}}")
+        Log.e("BD", "$list")
+        states.showValues("UseCase")
         return list
     }
 }
