@@ -38,12 +38,12 @@ import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 
 @Composable
-fun BillsScreen(navController: NavController){
+fun BillsScreen(navController: NavController, billsViewModel: BillsViewModel){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        BillContent(modifier = Modifier.padding(scafPad), navController)
+        BillContent(modifier = Modifier.padding(scafPad), navController, billsViewModel)
     }
 }
 
@@ -52,19 +52,21 @@ fun BillsScreen(navController: NavController){
 fun BillContent(
     modifier: Modifier = Modifier,
     navController: NavController,
+    billsViewModel: BillsViewModel
 ){
     Scaffold (
         topBar = { BillsToolbar(navController) },
         modifier = modifier.padding()
     ){ scafPad ->
         BillsList(
+            billsViewModel = billsViewModel,
             scafPad = scafPad
         )
     }
 }
 
 @Composable
-fun BillsList(billsViewModel: BillsViewModel = hiltViewModel(), scafPad: PaddingValues ){
+fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
 
     val billList = billsViewModel.billsList.observeAsState(emptyList())
 

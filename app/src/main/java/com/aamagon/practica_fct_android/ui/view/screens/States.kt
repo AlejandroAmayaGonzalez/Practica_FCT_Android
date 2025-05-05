@@ -2,8 +2,9 @@ package com.aamagon.practica_fct_android.ui.view.screens
 
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
+import javax.inject.Inject
 
-class States {
+class States @Inject constructor() {
 
     // States for DatePicker
     var showFrom = mutableStateOf(false)

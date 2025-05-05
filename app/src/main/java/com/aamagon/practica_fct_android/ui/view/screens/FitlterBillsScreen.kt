@@ -31,7 +31,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.ui.theme.Black
@@ -42,22 +41,22 @@ import com.aamagon.practica_fct_android.ui.theme.MainToolbarBackground
 import com.aamagon.practica_fct_android.ui.view.navigation.FilterBillsToolbar
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.view.dialogs.DatePickerDialog
-import com.aamagon.practica_fct_android.ui.viewmodel.FiltersViewModel
+import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 import kotlin.math.roundToInt
 
 @Composable
-fun FilterBillsScreen(navController: NavController){
+fun FilterBillsScreen(navController: NavController, billsViewModel: BillsViewModel){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        FilterBillsContent(modifier = Modifier.padding(scafPad), navController)
+        FilterBillsContent(modifier = Modifier.padding(scafPad), navController, billsViewModel)
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavController){
+fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavController, billsViewModel: BillsViewModel){
 
     val states = States()
 
@@ -86,7 +85,7 @@ fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavControll
                 thickness = 1.dp,
                 modifier = Modifier.padding(top = 8.dp, start = 32.dp, end = 32.dp, bottom = 8.dp)
             )
-            FilterButtons(states)
+            FilterButtons(states, billsViewModel)
         }
     }
 }
@@ -217,14 +216,14 @@ fun CheckBoxFilter(states: States) {
 }
 
 @Composable
-fun FilterButtons(states: States, filteredList: FiltersViewModel = hiltViewModel()) {
+fun FilterButtons(states: States, billsViewModel: BillsViewModel) {
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth().padding(16.dp)
     ) {
         Button(
             onClick = {
-                filteredList.applyFilters(states)
+                billsViewModel.applyFilters()
             },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
         ) {
