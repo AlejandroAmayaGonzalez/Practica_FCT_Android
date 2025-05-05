@@ -222,15 +222,16 @@ fun FilterButtons(states: States, billsViewModel: BillsViewModel) {
         modifier = Modifier.fillMaxWidth().padding(16.dp)
     ) {
         Button(
-            onClick = {
-                billsViewModel.applyFilters(states)
-            },
+            onClick = { billsViewModel.applyFilters(states) },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
         ) {
             Text( text = stringResource(R.string.applyFilters) )
         }
         Button(
-            onClick = { states.resetFilterValues() },
+            onClick = {
+                states.resetFilterValues()
+                billsViewModel.reset()
+            },
             colors = ButtonDefaults.buttonColors(containerColor = DatePickerBackground)
         ) {
             Text( text = stringResource(R.string.deleteFilters) )
