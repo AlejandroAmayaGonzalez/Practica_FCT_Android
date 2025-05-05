@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.ui.theme.Black
@@ -41,23 +42,25 @@ import com.aamagon.practica_fct_android.ui.theme.MainToolbarBackground
 import com.aamagon.practica_fct_android.ui.view.navigation.FilterBillsToolbar
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.view.dialogs.DatePickerDialog
+import com.aamagon.practica_fct_android.ui.viewmodel.FiltersViewModel
 import kotlin.math.roundToInt
 
 @Composable
 fun FilterBillsScreen(navController: NavController){
-    val states = States()
-
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        FilterBillsContent(modifier = Modifier.padding(scafPad), navController, states)
+        FilterBillsContent(modifier = Modifier.padding(scafPad), navController)
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavController, states: States){
+fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavController){
+
+    val states = States()
+
     Scaffold (
         topBar = { FilterBillsToolbar(navController) },
         modifier = modifier.padding()
@@ -214,13 +217,15 @@ fun CheckBoxFilter(states: States) {
 }
 
 @Composable
-fun FilterButtons(states: States) {
+fun FilterButtons(states: States, filteredList: FiltersViewModel = hiltViewModel()) {
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth().padding(16.dp)
     ) {
         Button(
-            onClick = {},
+            onClick = {
+                filteredList.applyFilters(states)
+            },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
         ) {
             Text( text = stringResource(R.string.applyFilters) )
