@@ -28,7 +28,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.domain.model.Bill
@@ -38,12 +37,12 @@ import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 
 @Composable
-fun BillsScreen(navController: NavController){
+fun BillsScreen(navController: NavController, billsViewModel: BillsViewModel){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        BillContent(modifier = Modifier.padding(scafPad), navController)
+        BillContent(modifier = Modifier.padding(scafPad), navController, billsViewModel)
     }
 }
 
@@ -52,19 +51,21 @@ fun BillsScreen(navController: NavController){
 fun BillContent(
     modifier: Modifier = Modifier,
     navController: NavController,
+    billsViewModel: BillsViewModel
 ){
     Scaffold (
         topBar = { BillsToolbar(navController) },
         modifier = modifier.padding()
     ){ scafPad ->
         BillsList(
+            billsViewModel = billsViewModel,
             scafPad = scafPad
         )
     }
 }
 
 @Composable
-fun BillsList(billsViewModel: BillsViewModel = hiltViewModel(), scafPad: PaddingValues ){
+fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
 
     val billList = billsViewModel.billsList.observeAsState(emptyList())
 
@@ -130,5 +131,5 @@ fun BillCard(bill: Bill){
         }
     }
 
-    BillDialog(show.value, {show.value = false})
+    BillDialog(show.value) { show.value = false }
 }

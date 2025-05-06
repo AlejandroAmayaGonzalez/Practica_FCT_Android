@@ -41,23 +41,25 @@ import com.aamagon.practica_fct_android.ui.theme.MainToolbarBackground
 import com.aamagon.practica_fct_android.ui.view.navigation.FilterBillsToolbar
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.view.dialogs.DatePickerDialog
+import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 import kotlin.math.roundToInt
 
 @Composable
-fun FilterBillsScreen(navController: NavController){
-    val states = States()
-
+fun FilterBillsScreen(navController: NavController, billsViewModel: BillsViewModel){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        FilterBillsContent(modifier = Modifier.padding(scafPad), navController, states)
+        FilterBillsContent(modifier = Modifier.padding(scafPad), navController, billsViewModel)
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavController, states: States){
+fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavController, billsViewModel: BillsViewModel){
+
+    val states = States()
+
     Scaffold (
         topBar = { FilterBillsToolbar(navController) },
         modifier = modifier.padding()
@@ -83,7 +85,7 @@ fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavControll
                 thickness = 1.dp,
                 modifier = Modifier.padding(top = 8.dp, start = 32.dp, end = 32.dp, bottom = 8.dp)
             )
-            FilterButtons(states)
+            FilterButtons(states, billsViewModel)
         }
     }
 }
@@ -214,19 +216,22 @@ fun CheckBoxFilter(states: States) {
 }
 
 @Composable
-fun FilterButtons(states: States) {
+fun FilterButtons(states: States, billsViewModel: BillsViewModel) {
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth().padding(16.dp)
     ) {
         Button(
-            onClick = {},
+            onClick = { billsViewModel.applyFilters(states) },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
         ) {
             Text( text = stringResource(R.string.applyFilters) )
         }
         Button(
-            onClick = { states.resetFilterValues() },
+            onClick = {
+                states.resetFilterValues()
+                billsViewModel.reset()
+            },
             colors = ButtonDefaults.buttonColors(containerColor = DatePickerBackground)
         ) {
             Text( text = stringResource(R.string.deleteFilters) )

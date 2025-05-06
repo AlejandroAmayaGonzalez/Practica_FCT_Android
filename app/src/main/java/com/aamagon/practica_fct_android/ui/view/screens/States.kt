@@ -2,8 +2,9 @@ package com.aamagon.practica_fct_android.ui.view.screens
 
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
+import javax.inject.Inject
 
-class States {
+class States @Inject constructor() {
 
     // States for DatePicker
     var showFrom = mutableStateOf(false)
@@ -15,6 +16,9 @@ class States {
 
     // State to control the Slider
     var sliderPos = mutableFloatStateOf(0F)
+    // Constants for slider filter
+    val maxSlider = 300.0
+    val minSlider = 0.0
 
     // States for each CheckBox
     var paidChecked = mutableStateOf(false)
