@@ -16,6 +16,9 @@ class States @Inject constructor() {
 
     // State to control the Slider
     var sliderPos = mutableFloatStateOf(0F)
+    // Constants for slider filter
+    val maxSlider = 300.0
+    val minSlider = 0.0
 
     // States for each CheckBox
     var paidChecked = mutableStateOf(false)

@@ -1,6 +1,7 @@
 package com.aamagon.practica_fct_android.domain
 
 import android.content.Context
+import android.util.Log
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.data.Repository
 import java.time.LocalDate
@@ -25,55 +26,31 @@ class FilterBillsUseCase @Inject constructor(
                 var date = LocalDate.parse(it.date, format)
                 dateFilter(states, date)
             }
+            .filter {
+                sliderFilter(states, it.quantity)
+            }
+            .filter {
+                checkBoxFilter(states.paidChecked.value,
+                    context.getString(R.string.paid), it.status)
+            }/*
+            .filter {
+                checkBoxFilter(states.cancelledChecked.value,
+                    context.getString(R.string.cancelled), it.status)
+            }
+            .filter {
+                checkBoxFilter(states.fixedFeeChecked.value,
+                    context.getString(R.string.fixedFee), it.status)
+            }
+            .filter {
+                checkBoxFilter(states.waitingChecked.value,
+                    context.getString(R.string.waitingForPayment), it.status)
+            }
+            .filter {
+                checkBoxFilter(states.paymentPlanChecked.value,
+                    context.getString(R.string.paymentPlan), it.status)
+            }*/
 
-        /*if (states.dateStringFrom.value == "Día/Mes/Año" && states.dateStringTo.value == "Día/Mes/Año"){
-            list.filter {
-                var date = LocalDate.parse(it.date, format)
-                date.isAfter(LocalDate.MIN) && date.isBefore(LocalDate.MAX)
-            }
-        }else if (states.dateStringFrom.value != "Día/Mes/Año" && states.dateStringTo.value == "Día/Mes/Año"){
-            list.filter {
-                var date = LocalDate.parse(it.date, format)
-                date.isAfter(LocalDate.parse(states.dateStringFrom.value, format)) && date.isBefore(LocalDate.MAX)
-            }
-        }else if (states.dateStringFrom.value == "Día/Mes/Año" && states.dateStringTo.value != "Día/Mes/Año"){
-            list.filter {
-                var date = LocalDate.parse(it.date, format)
-                date.isAfter(LocalDate.MIN) && date.isBefore(LocalDate.parse(states.dateStringTo.value, format))
-            }
-        }else{
-            list.filter {
-                var date = LocalDate.parse(it.date, format)
-                date.isAfter(LocalDate.parse(states.dateStringFrom.value, format)) &&
-                        date.isBefore(LocalDate.parse(states.dateStringTo.value, format))
-            }
-        }*/
-
-        // Quantity filter
-        /*if (states.sliderPos.floatValue != 0F){
-            list.filter {
-                var valueSlider = states.sliderPos.floatValue.toDouble()
-                it.quantity >= 1 && it.quantity <= valueSlider
-            }
-        }
-
-        // CheckBox filters
-        if (states.paidChecked.value){
-            list.filter { it.status == context.getString(R.string.paid) }
-        }
-        if (states.cancelledChecked.value){
-            list.filter { it.status == context.getString(R.string.cancelled) }
-        }
-        if (states.fixedFeeChecked.value){
-            list.filter { it.status == context.getString(R.string.fixedFee) }
-        }
-        if (states.waitingChecked.value){
-            list.filter { it.status == context.getString(R.string.waitingForPayment) }
-        }
-        if (states.paymentPlanChecked.value){
-            list.filter { it.status == context.getString(R.string.paymentPlan) }
-        }*/
-
+        Log.e("res", "${result.toList()}")
         return result.toList()
     }
 
@@ -93,6 +70,28 @@ class FilterBillsUseCase @Inject constructor(
         }else{
             date.isAfter(LocalDate.parse(states.dateStringFrom.value, format)) &&
                     date.isBefore(LocalDate.parse(states.dateStringTo.value, format))
+        }
+    }
+
+    private fun sliderFilter(states: States, quantity: Double): Boolean{
+        val sliderVal = states.sliderPos.floatValue.toDouble()
+
+        return if (states.sliderPos.floatValue != states.minSlider.toFloat()){
+            quantity >= 1.0 && quantity <= sliderVal
+        }else{
+            quantity >= 1.0 && quantity <= states.maxSlider
+        }
+    }
+
+    private fun checkBoxFilter(
+        checkboxState: Boolean,
+        stringCompared: String,
+        status: String
+    ): Boolean{
+        return if (checkboxState){
+            status == stringCompared
+        } else {
+            status != stringCompared
         }
     }
 }
