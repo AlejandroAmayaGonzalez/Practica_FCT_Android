@@ -31,24 +31,24 @@ class FilterBillsUseCase @Inject constructor(
             }
             .filter {
                 checkBoxFilter(states.paidChecked.value,
-                    context.getString(R.string.paid), it.status)
-            }/*
+                    context.getString(R.string.filPaid), it.status)
+            }
             .filter {
                 checkBoxFilter(states.cancelledChecked.value,
-                    context.getString(R.string.cancelled), it.status)
+                    context.getString(R.string.filCancel), it.status)
             }
             .filter {
                 checkBoxFilter(states.fixedFeeChecked.value,
-                    context.getString(R.string.fixedFee), it.status)
+                    context.getString(R.string.filFixed), it.status)
             }
             .filter {
                 checkBoxFilter(states.waitingChecked.value,
-                    context.getString(R.string.waitingForPayment), it.status)
+                    context.getString(R.string.filWaiting), it.status)
             }
             .filter {
                 checkBoxFilter(states.paymentPlanChecked.value,
-                    context.getString(R.string.paymentPlan), it.status)
-            }*/
+                    context.getString(R.string.filPlan), it.status)
+            }
 
         Log.e("res", "${result.toList()}")
         return result.toList()
@@ -89,9 +89,7 @@ class FilterBillsUseCase @Inject constructor(
         status: String
     ): Boolean{
         return if (checkboxState){
-            status == stringCompared
-        } else {
-            status != stringCompared
-        }
+            status.equals(stringCompared, true)
+        } else true
     }
 }
