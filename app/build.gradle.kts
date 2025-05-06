@@ -76,6 +76,9 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation (libs.hilt.navigation.compose)
 
+    // RetroMock
+    implementation(libs.infinum.retromock)
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

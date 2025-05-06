@@ -1,7 +1,5 @@
 package com.aamagon.practica_fct_android.core.di
 
-import com.aamagon.practica_fct_android.data.network.bills.BillsApiClient
-import com.aamagon.practica_fct_android.data.network.detail.DetailApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +15,6 @@ object RetrofitModule {
     /* URLs:
      * https://viewnextandroid.mocklab.io/facturas
      * https://viewnextandroid.wiremockapi.cloud/facturas
-     * https://d869b751-7eb6-44b9-8db5-33f51b4f1d7a.mock.pstmn.io/
      */
 
     @BillService
@@ -39,19 +36,4 @@ object RetrofitModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-    @BillService
-    @Singleton
-    @Provides
-    fun provideBillsApiClient(@BillService retrofit: Retrofit): BillsApiClient{
-        return retrofit.create(BillsApiClient::class.java)
-    }
-
-    @DetailService
-    @Singleton
-    @Provides
-    fun provideDetailApiClient(@DetailService retrofit: Retrofit): DetailApiClient{
-        return retrofit.create(DetailApiClient::class.java)
-    }
-
 }

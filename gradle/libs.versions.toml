@@ -15,6 +15,7 @@ composeBom = "2025.04.01"
 navigationCompose = "2.8.9"
 picasso = "2.71828"
 retrofit = "2.11.0"
+retromockVersion = "1.1.0"
 roomCompiler = "2.7.1"
 runtime = "1.1.1"
 hiltVersion = "2.51.1"
@@ -32,6 +33,7 @@ androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedat
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 converter-gson-v290 = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGsonVersion" }
 design = { module = "com.android.support:design", version.ref = "design" }
+infinum-retromock = { module = "co.infinum:retromock", version.ref = "retromockVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
