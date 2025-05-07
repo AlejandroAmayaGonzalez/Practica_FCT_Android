@@ -1,5 +1,7 @@
 package com.aamagon.practica_fct_android.core.di
 
+import com.aamagon.practica_fct_android.data.network.bills.BillsApiClient
+import com.aamagon.practica_fct_android.data.network.detail.DetailApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,4 +38,19 @@ object RetrofitModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    /*
+    @BillService
+    @Singleton
+    @Provides
+    fun provideBillsApiClient(@BillService retrofit: Retrofit): BillsApiClient{
+        return retrofit.create(BillsApiClient::class.java)
+    }
+
+    @DetailService
+    @Singleton
+    @Provides
+    fun provideDetailApiClient(@DetailService retrofit: Retrofit): DetailApiClient{
+        return retrofit.create(DetailApiClient::class.java)
+    }*/
 }
