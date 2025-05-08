@@ -28,7 +28,7 @@ fun MainApp(
         content = {
             NavHost(navController = navController, startDestination = ToolbarRoutes.HomeScreen.route){
                 composable(route = ToolbarRoutes.HomeScreen.route) {
-                    HomeScreen(navController)
+                    HomeScreen(navController, billsViewModel)
                 }
                 composable(route = ToolbarRoutes.BillsScreen.route) {
                     BillsScreen(navController, billsViewModel)

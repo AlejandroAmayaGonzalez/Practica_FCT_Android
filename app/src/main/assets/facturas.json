@@ -8,13 +8,23 @@
     },
     {
       "descEstado": "Pagada",
+      "importeOrdenacion": 8.99,
+      "fecha": "26/04/2025"
+    },
+    {
+      "descEstado": "Pagada",
       "importeOrdenacion": 25.140000000000001,
       "fecha": "05/02/2019"
     },
     {
+      "descEstado": "Pendiente de pago",
+      "importeOrdenacion": 39.57,
+      "fecha": "24/10/2022"
+    },
+    {
       "descEstado": "Pagada",
       "importeOrdenacion": 22.690000000000001,
-      "fecha": "08/01/2019"
+      "fecha": "10/01/2017"
     },
     {
       "descEstado": "Pendiente de pago",
@@ -24,7 +34,7 @@
     {
       "descEstado": "Pagada",
       "importeOrdenacion": 35.159999999999997,
-      "fecha": "16/11/2018"
+      "fecha": "16/11/2019"
     },
     {
       "descEstado": "Pagada",
@@ -34,12 +44,17 @@
     {
       "descEstado": "Pendiente de pago",
       "importeOrdenacion": 61.170000000000002,
-      "fecha": "05/09/2018"
+      "fecha": "25/09/2021"
     },
     {
       "descEstado": "Pagada",
       "importeOrdenacion": 37.18,
-      "fecha": "07/08/2018"
+      "fecha": "10/05/2020"
+    },
+    {
+      "descEstado": "Pagada",
+      "importeOrdenacion": 90.25,
+      "fecha": "11/07/2018"
     }
   ]
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aamagon.practica_fct_android.domain.FilterBillsUseCase
 import com.aamagon.practica_fct_android.domain.GetBillsUseCase
+import com.aamagon.practica_fct_android.domain.PrefsManagementUseCase
 import com.aamagon.practica_fct_android.domain.model.Bill
 import com.aamagon.practica_fct_android.ui.view.screens.States
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class BillsViewModel @Inject constructor(
     private val getBillsUseCase: GetBillsUseCase,
-    private val filterBillsUseCase: FilterBillsUseCase
+    private val filterBillsUseCase: FilterBillsUseCase,
+    private val prefsManagementUseCase: PrefsManagementUseCase
 ): ViewModel() {
 
     private val _billsList = MutableLiveData<List<Bill>>()
@@ -44,8 +46,8 @@ class BillsViewModel @Inject constructor(
         }
     }
 
-    fun reset(){
-        _billsList.postValue(original)
-    }
+    fun changeValuePref(value: Boolean) = prefsManagementUseCase.setValuePref(value)
+    fun getValuePref(): Boolean = prefsManagementUseCase.getValuePref()
 
+    fun reset() = _billsList.postValue(original)
 }

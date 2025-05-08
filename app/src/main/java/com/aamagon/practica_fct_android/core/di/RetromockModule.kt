@@ -3,7 +3,6 @@ package com.aamagon.practica_fct_android.core.di
 import android.content.Context
 import co.infinum.retromock.Retromock
 import com.aamagon.practica_fct_android.core.bodyFactory.AssetsBodyFactory
-import com.aamagon.practica_fct_android.data.network.bills.BillsApiClient
 import com.aamagon.practica_fct_android.data.network.detail.DetailApiClient
 import dagger.Module
 import dagger.Provides
@@ -43,12 +42,13 @@ object RetromockModule {
             .build()
     }
 
+    /*
     @BillService
     @Singleton
     @Provides
     fun provideBillsApiClient(@BillService retromock: Retromock): BillsApiClient{
         return retromock.create(BillsApiClient::class.java)
-    }
+    }*/
 
     @DetailService
     @Singleton

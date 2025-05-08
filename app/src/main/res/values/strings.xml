@@ -71,4 +71,8 @@
     <!-- PLaceholders -->
     <string name="datePlaceholder">Día/Mes/Año</string>
 
+    <!-- Strings for Toasts -->
+    <string name="enable">Mocks activados</string>
+    <string name="disable">Mocks desactivados</string>
+
 </resources>

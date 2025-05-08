@@ -3,6 +3,7 @@ package com.aamagon.practica_fct_android.data
 import com.aamagon.practica_fct_android.core.extensions.toDomain
 import com.aamagon.practica_fct_android.data.database.dao.BillDao
 import com.aamagon.practica_fct_android.data.database.entities.BillEntity
+import com.aamagon.practica_fct_android.data.model.MockButtonPreference
 import com.aamagon.practica_fct_android.data.network.bills.BillsApiService
 import com.aamagon.practica_fct_android.data.network.detail.DetailApiService
 import com.aamagon.practica_fct_android.domain.model.BillsList
@@ -12,9 +13,11 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val billApi: BillsApiService,
     private val detailApi: DetailApiService,
-    private val billDao: BillDao
+    private val billDao: BillDao,
+    private val activateMocks: MockButtonPreference
 ) {
 
+    // Functions related to services
     suspend fun getAllBillsFromApi(): BillsList{
         val response = billApi.getBills()
         return response.toDomain()
@@ -25,6 +28,7 @@ class Repository @Inject constructor(
         return response.toDomain()
     }
 
+    // Functions about database management
     suspend fun getAllBillsFromDatabase(): BillsList{
         val response = billDao.getAllBills()
 
@@ -40,4 +44,8 @@ class Repository @Inject constructor(
     }
 
     suspend fun clearBills() = billDao.deleteBills()
+
+    // Functions related to the shared preferences management
+    fun setUseMock(value: Boolean) = activateMocks.setValue(value)
+    fun getUseMock(): Boolean = activateMocks.getValue()
 }
