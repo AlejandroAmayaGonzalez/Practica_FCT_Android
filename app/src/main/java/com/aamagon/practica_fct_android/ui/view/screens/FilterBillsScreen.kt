@@ -18,6 +18,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
@@ -40,6 +41,7 @@ import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.ui.theme.Black
 import com.aamagon.practica_fct_android.ui.theme.DatePickerBackground
 import com.aamagon.practica_fct_android.ui.theme.DividerColor
+import com.aamagon.practica_fct_android.ui.theme.Green
 import com.aamagon.practica_fct_android.ui.theme.LightGreen
 import com.aamagon.practica_fct_android.ui.theme.MainToolbarBackground
 import com.aamagon.practica_fct_android.ui.view.navigation.FilterBillsToolbar
@@ -159,17 +161,16 @@ fun AmountFilter(states: States){
             onValueChange = { states.sliderPos.floatValue = it },
             valueRange = 1f..300f,
             colors = SliderDefaults.colors(
-                thumbColor = MainToolbarBackground,
                 activeTickColor = MainToolbarBackground,
                 inactiveTickColor = MainToolbarBackground,
                 activeTrackColor = LightGreen,
-                inactiveTrackColor = LightGreen
+                inactiveTrackColor = Green
             ),
             thumb = {
                 Image(
                     painter = painterResource(R.drawable.custom_thumb),
                     contentDescription = null,
-                    modifier = Modifier.width(30.dp).height(30.dp)
+                    modifier = Modifier.width(40.dp).height(40.dp)
                 )
             },
             modifier = Modifier.padding(start = 16.dp, end = 16.dp)
@@ -188,26 +189,11 @@ fun CheckBoxFilter(states: States) {
 
         Spacer( modifier = Modifier.padding(top = 8.dp) )
 
-        Row ( verticalAlignment = Alignment.CenterVertically ) {
-            Text( text = stringResource(R.string.paid) )
-            Checkbox( checked = states.paidChecked.value, onCheckedChange = { states.paidChecked.value = it } )
-        }
-        Row ( verticalAlignment = Alignment.CenterVertically ) {
-            Text( text = stringResource(R.string.cancelled) )
-            Checkbox( checked = states.cancelledChecked.value, onCheckedChange = { states.cancelledChecked.value = it } )
-        }
-        Row ( verticalAlignment = Alignment.CenterVertically ) {
-            Text( text = stringResource(R.string.fixedFee) )
-            Checkbox( checked = states.fixedFeeChecked.value, onCheckedChange = { states.fixedFeeChecked.value = it } )
-        }
-        Row ( verticalAlignment = Alignment.CenterVertically ) {
-            Text( text = stringResource(R.string.waitingForPayment) )
-            Checkbox( checked = states.waitingChecked.value, onCheckedChange = { states.waitingChecked.value = it } )
-        }
-        Row ( verticalAlignment = Alignment.CenterVertically ) {
-            Text( text = stringResource(R.string.paymentPlan) )
-            Checkbox( checked = states.paymentPlanChecked.value, onCheckedChange = { states.paymentPlanChecked.value = it } )
-        }
+        CheckBoxRow(states.paidChecked, stringResource(R.string.paid))
+        CheckBoxRow(states.cancelledChecked, stringResource(R.string.cancelled))
+        CheckBoxRow(states.fixedFeeChecked, stringResource(R.string.fixedFee))
+        CheckBoxRow(states.waitingChecked, stringResource(R.string.waitingForPayment))
+        CheckBoxRow(states.paymentPlanChecked, stringResource(R.string.paymentPlan))
     }
 }
 
@@ -249,6 +235,18 @@ fun Divider(){
             color = DividerColor,
             thickness = 1.dp,
             modifier = Modifier.padding(8.dp).fillMaxWidth(0.9F)
+        )
+    }
+}
+
+@Composable
+fun CheckBoxRow(state: MutableState<Boolean>, type: String){
+    Row ( verticalAlignment = Alignment.CenterVertically ) {
+        Text( text = type )
+        Checkbox(
+            checked = state.value,
+            onCheckedChange = { state.value = it },
+            colors = CheckboxDefaults.colors( checkedColor = Green )
         )
     }
 }

@@ -13,6 +13,7 @@ val Pink40 = Color(0xFF7D5260)
 val Black = Color(0xFF000000)
 val LightGreen = Color(0xFF8BC34A)
 val White = Color(0xFFFFFFFF)
+val Green = Color(0xFF5EAF4C)
 
 // MainToolbar background
 val MainToolbarBackground = Color(0xFFB4FF61)
