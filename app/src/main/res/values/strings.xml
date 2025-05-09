@@ -24,7 +24,7 @@
     <string name="bodyDialog">Esta funcionalidad aún no está disponible.</string>
     <string name="dismissButton">Cerrar</string>
     <string name="acceptDialog">Aceptar</string>
-    <string name="cancelDialog">Cancel</string>
+    <string name="cancelDialog">Cancelar</string>
     <string name="detailTitle">Estado solicitud de autoconsumo</string>
     <string name="detailBody">
         El tiempo estimado de activación de tu autoconsumo es de 1 a 2 meses,
@@ -57,6 +57,7 @@
         Aquí tienes los datos de tu instalación
         fotovoltaica en tiepo real.
     </string>
+    <string name="selfConsume">Autoconsumo: 92%</string>
     <string name="energyDesc">
         Estamos trabajando en mejorar la app. Tus paneles solares
         siguen produciendo, en breve podrás seguir viendo tu
