@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aamagon.practica_fct_android.R
+import com.aamagon.practica_fct_android.ui.theme.Green
 import com.aamagon.practica_fct_android.ui.theme.LightGreen
 import com.aamagon.practica_fct_android.ui.theme.White
 import java.text.SimpleDateFormat
@@ -33,7 +35,10 @@ fun BillDialog(show: Boolean, onDismiss: () -> Unit){
             onDismissRequest = { onDismiss() },
             confirmButton = {},
             dismissButton = {
-                TextButton( onClick = { onDismiss() } ) {
+                TextButton(
+                    onClick = { onDismiss() },
+                    colors = ButtonDefaults.textButtonColors(contentColor = Green)
+                ) {
                     Text(
                         text = stringResource(R.string.dismissButton),
                         fontSize = 20.sp
@@ -69,22 +74,42 @@ fun DatePickerDialog(
     DatePickerDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
-            TextButton(onClick = {
-                onDateSelected(datePickerState.selectedDateMillis)
-                onDismiss
-                dateString.value =
-                    dateFormat.format(Date(datePickerState.selectedDateMillis!!)).toString()
-            }) {
+            TextButton(
+                onClick = {
+                    onDateSelected(datePickerState.selectedDateMillis)
+                    onDismiss
+                    dateString.value = dateFormat
+                        .format(Date(datePickerState.selectedDateMillis!!)).toString()
+                },
+                colors = ButtonDefaults.textButtonColors(
+                    containerColor = LightGreen,
+                    contentColor = White
+                )
+            ) {
                 Text(text = stringResource(R.string.acceptDialog))
             }
         },
         dismissButton = {
-            TextButton(onClick = { onDismiss() }) {
+            TextButton(
+                onClick = { onDismiss() },
+                colors = ButtonDefaults.textButtonColors(
+                    containerColor = LightGreen,
+                    contentColor = White
+                )
+            ) {
                 Text(text = stringResource(R.string.cancelDialog))
             }
         }
     ) {
-        DatePicker(state = datePickerState)
+        DatePicker(
+            state = datePickerState,
+            colors = DatePickerDefaults.colors(
+                selectedDayContainerColor = LightGreen,
+                todayDateBorderColor = Green,
+                todayContentColor = Green,
+                selectedYearContainerColor = LightGreen
+            )
+        )
     }
 }
 
