@@ -68,24 +68,12 @@ fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavControll
             modifier = Modifier.padding(scafPad).fillMaxSize()
         ) {
             DateFilter(states)
-            HorizontalDivider(
-                color = DividerColor,
-                thickness = 1.dp,
-                modifier = Modifier.padding(top = 8.dp, start = 32.dp, end = 32.dp, bottom = 8.dp)
-            )
+            Divider()
             AmountFilter(states)
-            HorizontalDivider(
-                color = DividerColor,
-                thickness = 1.dp,
-                modifier = Modifier.padding(top = 8.dp, start = 32.dp, end = 32.dp, bottom = 8.dp)
-            )
+            Divider()
             CheckBoxFilter(states)
-            HorizontalDivider(
-                color = DividerColor,
-                thickness = 1.dp,
-                modifier = Modifier.padding(top = 8.dp, start = 32.dp, end = 32.dp, bottom = 8.dp)
-            )
-            FilterButtons(states, billsViewModel)
+            Divider()
+            FilterButtons(states, billsViewModel, navController)
         }
     }
 }
@@ -216,13 +204,16 @@ fun CheckBoxFilter(states: States) {
 }
 
 @Composable
-fun FilterButtons(states: States, billsViewModel: BillsViewModel) {
+fun FilterButtons(states: States, billsViewModel: BillsViewModel, navController: NavController) {
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth().padding(16.dp)
     ) {
         Button(
-            onClick = { billsViewModel.applyFilters(states) },
+            onClick = {
+                billsViewModel.applyFilters(states)
+                navController.popBackStack()
+            },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
         ) {
             Text( text = stringResource(R.string.applyFilters) )
@@ -231,10 +222,20 @@ fun FilterButtons(states: States, billsViewModel: BillsViewModel) {
             onClick = {
                 states.resetFilterValues()
                 billsViewModel.reset()
+                navController.popBackStack()
             },
             colors = ButtonDefaults.buttonColors(containerColor = DatePickerBackground)
         ) {
             Text( text = stringResource(R.string.deleteFilters) )
         }
     }
+}
+
+@Composable
+fun Divider(){
+    HorizontalDivider(
+        color = DividerColor,
+        thickness = 1.dp,
+        modifier = Modifier.padding(top = 8.dp, start = 32.dp, end = 32.dp, bottom = 8.dp)
+    )
 }
