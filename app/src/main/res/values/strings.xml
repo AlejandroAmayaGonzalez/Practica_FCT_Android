@@ -57,6 +57,7 @@
         Aquí tienes los datos de tu instalación
         fotovoltaica en tiepo real.
     </string>
+    <string name="selfConsume">Autoconsumo: 92%</string>
     <string name="energyDesc">
         Estamos trabajando en mejorar la app. Tus paneles solares
         siguen produciendo, en breve podrás seguir viendo tu

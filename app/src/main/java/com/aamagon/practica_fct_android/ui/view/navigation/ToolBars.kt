@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.aamagon.practica_fct_android.R
-import com.aamagon.practica_fct_android.ui.theme.BillsToolbarBackground
 import com.aamagon.practica_fct_android.ui.theme.MainToolbarBackground
+import com.aamagon.practica_fct_android.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -77,7 +77,7 @@ fun BillsToolbar(navController: NavController){
                 fontSize = 40.sp
             )
         },
-        colors = TopAppBarDefaults.topAppBarColors( containerColor = BillsToolbarBackground),
+        colors = TopAppBarDefaults.topAppBarColors( containerColor = White),
         actions = {
             IconButton( onClick = { navController.navigate(ToolbarRoutes.FilterBillsScreen.route) } ) {
                 Image(
@@ -101,7 +101,7 @@ fun FilterBillsToolbar(navController: NavController){
                 fontSize = 40.sp
             )
         },
-        colors = TopAppBarDefaults.topAppBarColors( containerColor = BillsToolbarBackground),
+        colors = TopAppBarDefaults.topAppBarColors( containerColor = White),
         actions = {
             IconButton( onClick = { navController.popBackStack() } ) {
                 Image(
