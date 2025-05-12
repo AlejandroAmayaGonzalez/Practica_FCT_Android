@@ -75,5 +75,6 @@
     <!-- Strings for Toasts -->
     <string name="enable">Mocks activados</string>
     <string name="disable">Mocks desactivados</string>
+    <string name="toastErr">No hay datos disponibles</string>
 
 </resources>

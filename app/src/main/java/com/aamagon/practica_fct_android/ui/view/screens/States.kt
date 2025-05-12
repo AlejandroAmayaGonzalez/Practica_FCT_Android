@@ -43,4 +43,15 @@ class States @Inject constructor() {
         waitingChecked.value = false
         paymentPlanChecked.value = false
     }
+
+    fun datesHaveACorrectRange(): Boolean{
+        var from = selectedDateFrom
+        var to = selectedDateTo
+
+        return if (from.value == null || to.value == null){
+            true
+        }else{
+            !(from.value!! > to.value!! || to.value!! < from.value!!)
+        }
+    }
 }

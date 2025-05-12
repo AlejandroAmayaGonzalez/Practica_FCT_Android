@@ -58,18 +58,32 @@ class FilterBillsUseCase @Inject constructor(
         val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         val placeholder = context.getString(R.string.datePlaceholder)
 
+        val dateFrom = states.dateStringFrom.value
+        val dateTo = states.dateStringTo.value
+
         // There are 4 possibilities. Return the necessary code to filter
-        return if (states.dateStringFrom.value == placeholder && states.dateStringTo.value == placeholder){
+        return if (dateFrom == placeholder && dateTo == placeholder){
+
+            // The date filter is not used
             date.isAfter(LocalDate.MIN) && date.isBefore(LocalDate.MAX)
-        }else if (states.dateStringFrom.value != placeholder && states.dateStringTo.value == placeholder){
-            date.isAfter(LocalDate.parse(states.dateStringFrom.value, format))
+
+        }else if (dateFrom != placeholder && dateTo == placeholder){
+
+            // Only "from" date is changed
+            date.isAfter(LocalDate.parse(dateFrom, format))
                     && date.isBefore(LocalDate.MAX)
-        }else if (states.dateStringFrom.value == placeholder && states.dateStringTo.value != placeholder){
+
+        }else if (dateFrom == placeholder){
+
+            // Only "to" date is changed
             date.isAfter(LocalDate.MIN)
-                    && date.isBefore(LocalDate.parse(states.dateStringTo.value, format))
+                    && date.isBefore(LocalDate.parse(dateTo, format))
+
         }else{
-            date.isAfter(LocalDate.parse(states.dateStringFrom.value, format)) &&
-                    date.isBefore(LocalDate.parse(states.dateStringTo.value, format))
+
+            // Both are changed
+            date.isAfter(LocalDate.parse(dateFrom, format)) &&
+                    date.isBefore(LocalDate.parse(dateTo, format))
         }
     }
 
