@@ -102,7 +102,7 @@ fun DateFilter(states: States){
             horizontalArrangement = Arrangement.SpaceAround,
             modifier = Modifier.fillMaxWidth()
         ) {
-            DateCol( desc = stringResource(R.string.from), states.dateStringFrom, states.selectedDateTo, states.showFrom )
+            DateCol( desc = stringResource(R.string.from), states.dateStringFrom, states.selectedDateFrom, states.showFrom )
             DateCol( desc = stringResource(R.string.to), states.dateStringTo, states.selectedDateTo, states.showTo )
         }
     }
@@ -110,7 +110,10 @@ fun DateFilter(states: States){
 
 // The design of the component that contains date picker and text
 @Composable
-fun DateCol(desc: String, dateString: MutableState<String>, selectedDate: MutableState<Long?>, show: MutableState<Boolean>){
+fun DateCol(desc: String, dateString: MutableState<String>,
+            selectedDate: MutableState<Long?>,
+            show: MutableState<Boolean>
+){
     Column {
         Text( text = desc )
         Spacer( modifier = Modifier.height(5.dp) )
@@ -205,8 +208,11 @@ fun FilterButtons(states: States, billsViewModel: BillsViewModel, navController:
     ) {
         Button(
             onClick = {
-                billsViewModel.applyFilters(states)
-                navController.popBackStack()
+                // Before apply filters checks if range is possible
+                if (states.datesHaveACorrectRange()){
+                    billsViewModel.applyFilters(states)
+                    navController.popBackStack()
+                }
             },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
         ) {
