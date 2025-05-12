@@ -71,22 +71,23 @@ fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
 
     val billList = billsViewModel.billsList.observeAsState(emptyList())
 
+    // To show Toasts Errors
     val context = LocalContext.current
-    val errMsg = stringResource(R.string.socketException)
+    val errMsg = stringResource(R.string.toastErr)
 
     LazyColumn (
         modifier = Modifier.fillMaxSize()
             .padding(scafPad)
             .padding(16.dp)
     ){
-        if (billList.value.isNotEmpty()){
-            items (billList.value) { bill ->
-                BillCard(
-                    bill = bill
-                )
-                Spacer( modifier = Modifier.height(8.dp) )
-            }
-        }else{
+        items (billList.value) { bill ->
+            BillCard(
+                bill = bill
+            )
+            Spacer( modifier = Modifier.height(8.dp) )
+        }
+
+        if (billList.value.isEmpty()){
             Toast.makeText(context, errMsg, Toast.LENGTH_SHORT).show()
         }
     }
