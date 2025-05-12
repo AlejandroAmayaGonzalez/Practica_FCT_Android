@@ -1,6 +1,7 @@
 package com.aamagon.practica_fct_android.ui.view.screens
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -69,16 +71,23 @@ fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
 
     val billList = billsViewModel.billsList.observeAsState(emptyList())
 
+    val context = LocalContext.current
+    val errMsg = stringResource(R.string.socketException)
+
     LazyColumn (
         modifier = Modifier.fillMaxSize()
             .padding(scafPad)
             .padding(16.dp)
     ){
-        items (billList.value) { bill ->
-            BillCard(
-                bill = bill
-            )
-            Spacer( modifier = Modifier.height(8.dp) )
+        if (billList.value.isNotEmpty()){
+            items (billList.value) { bill ->
+                BillCard(
+                    bill = bill
+                )
+                Spacer( modifier = Modifier.height(8.dp) )
+            }
+        }else{
+            Toast.makeText(context, errMsg, Toast.LENGTH_SHORT).show()
         }
     }
 }
