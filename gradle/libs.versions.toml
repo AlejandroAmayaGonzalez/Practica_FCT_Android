@@ -13,6 +13,7 @@ kotlinxCoroutinesAndroid = "1.10.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 composeBom = "2025.04.01"
+mockk = "1.12.2"
 navigationCompose = "2.8.9"
 picasso = "2.71828"
 retrofit = "2.11.0"
@@ -51,6 +52,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 recyclerview-v7 = { module = "com.android.support:recyclerview-v7", version.ref = "design" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
