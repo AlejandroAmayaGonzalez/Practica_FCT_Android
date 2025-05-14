@@ -20,6 +20,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -70,10 +71,11 @@ fun BillContent(
 fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
 
     val billList = billsViewModel.billsList.observeAsState(emptyList())
+    val noMatches = billsViewModel.noMatches.observeAsState(false)
+    val isLoading = billsViewModel.isLoading.observeAsState(false)
 
-    // To show Toasts Errors
     val context = LocalContext.current
-    val errMsg = stringResource(R.string.toastErr)
+    val toastErr = stringResource(R.string.toastErr)
 
     LazyColumn (
         modifier = Modifier.fillMaxSize()
@@ -86,9 +88,12 @@ fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
             )
             Spacer( modifier = Modifier.height(8.dp) )
         }
+    }
 
-        if (billList.value.isEmpty()){
-            Toast.makeText(context, errMsg, Toast.LENGTH_SHORT).show()
+    LaunchedEffect(noMatches) {
+        if (billList.value.isEmpty() && !isLoading.value) {
+            Toast.makeText(context, toastErr, Toast.LENGTH_SHORT).show()
+            billsViewModel.resetNoMatchValue()
         }
     }
 }
