@@ -223,7 +223,6 @@ fun FilterButtons(states: States, billsViewModel: BillsViewModel, navController:
             onClick = {
                 states.resetFilterValues()
                 billsViewModel.reset()
-                navController.navigate(ToolbarRoutes.BillsScreen.route)
             },
             colors = ButtonDefaults.buttonColors(containerColor = DatePickerBackground)
         ) {
