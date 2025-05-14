@@ -47,6 +47,7 @@ import com.aamagon.practica_fct_android.ui.theme.MainToolbarBackground
 import com.aamagon.practica_fct_android.ui.view.navigation.FilterBillsToolbar
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.view.dialogs.DatePickerDialog
+import com.aamagon.practica_fct_android.ui.view.navigation.ToolbarRoutes
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 import kotlin.math.roundToInt
 
@@ -211,7 +212,7 @@ fun FilterButtons(states: States, billsViewModel: BillsViewModel, navController:
                 // Before apply filters checks if range is possible
                 if (states.datesHaveACorrectRange()){
                     billsViewModel.applyFilters(states)
-                    navController.popBackStack()
+                    navController.navigate(ToolbarRoutes.BillsScreen.route)
                 }
             },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
@@ -222,7 +223,7 @@ fun FilterButtons(states: States, billsViewModel: BillsViewModel, navController:
             onClick = {
                 states.resetFilterValues()
                 billsViewModel.reset()
-                navController.popBackStack()
+                navController.navigate(ToolbarRoutes.BillsScreen.route)
             },
             colors = ButtonDefaults.buttonColors(containerColor = DatePickerBackground)
         ) {
