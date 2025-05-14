@@ -1,7 +1,6 @@
 package com.aamagon.practica_fct_android.domain
 
 import android.content.Context
-import android.util.Log
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.data.Repository
 import java.time.LocalDate
@@ -50,7 +49,6 @@ class FilterBillsUseCase @Inject constructor(
                     context.getString(R.string.filPlan), it.status)
             }
 
-        Log.e("res", "${result.toList()}")
         return result.toList()
     }
 
