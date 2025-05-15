@@ -9,7 +9,6 @@ import com.aamagon.practica_fct_android.data.network.bills.BillsApiService
 import com.aamagon.practica_fct_android.data.network.detail.DetailApiService
 import com.aamagon.practica_fct_android.domain.model.BillsList
 import com.aamagon.practica_fct_android.domain.model.Detail
-import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 class Repository @Inject constructor(
@@ -21,13 +20,7 @@ class Repository @Inject constructor(
 
     // Functions related to services
     suspend fun getAllBillsFromApi(): BillsList{
-
-        var response: BillsListModel = try {
-            billApi.getBills()
-        }catch (_: SocketTimeoutException){
-            BillsListModel(0, emptyList())
-        }
-
+        var response: BillsListModel = billApi.getBills()
         return response.toDomain()
     }
 
