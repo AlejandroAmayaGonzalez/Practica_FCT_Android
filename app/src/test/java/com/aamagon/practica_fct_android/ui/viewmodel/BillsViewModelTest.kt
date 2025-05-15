@@ -1,6 +1,7 @@
 package com.aamagon.practica_fct_android.ui.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import com.aamagon.practica_fct_android.domain.FilterBillsUseCase
 import com.aamagon.practica_fct_android.domain.GetBillsUseCase
 import com.aamagon.practica_fct_android.domain.PrefsManagementUseCase
@@ -9,6 +10,7 @@ import com.aamagon.practica_fct_android.ui.view.screens.States
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -83,6 +85,23 @@ class BillsViewModelTest {
     }
 
     @Test
+    fun `when the filtered list is empty, set true noMatch`() = runTest {
+        // Given
+        coEvery { filterBillsUseCase(any()) } returns emptyList()
+
+        billsViewModel = BillsViewModel(getBillsUseCase,
+            filterBillsUseCase, prefsManagementUseCase)
+        dispatcher.scheduler.advanceUntilIdle()
+
+        // When
+        billsViewModel.applyFilters(States())
+        dispatcher.scheduler.advanceUntilIdle()
+
+        // Then
+        assertEquals(true, billsViewModel.noMatches.value)
+    }
+
+    @Test
     fun `reset the info with the first requested info`() = runTest {
         // Given
         coEvery { getBillsUseCase() } returns list
@@ -120,7 +139,8 @@ class BillsViewModelTest {
     @Test
     fun `get the shared preference value`() = runTest {
         // Given
-        coEvery { prefsManagementUseCase.getValuePref() } returns true
+        val bool = true
+        coEvery { prefsManagementUseCase.getValuePref() } returns bool
 
         billsViewModel = BillsViewModel(getBillsUseCase,
             filterBillsUseCase, prefsManagementUseCase)
@@ -130,5 +150,22 @@ class BillsViewModelTest {
 
         // Then
         assert(res == true)
+    }
+
+    @Test
+    fun `reset noMatches value to default`(){
+        billsViewModel = BillsViewModel(getBillsUseCase,
+            filterBillsUseCase, prefsManagementUseCase)
+
+        // Given
+        val observer = Observer<Boolean> {}
+        billsViewModel.noMatches.observeForever(observer)
+
+        // When
+        billsViewModel.resetNoMatchValue()
+
+        // Then
+        val result = billsViewModel.noMatches.value
+        assertEquals(false, result)
     }
 }
