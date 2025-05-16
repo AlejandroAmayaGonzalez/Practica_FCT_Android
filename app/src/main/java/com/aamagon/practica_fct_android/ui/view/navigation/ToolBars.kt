@@ -32,7 +32,7 @@ fun MainToolBar(navController: NavController){
         },
         navigationIcon = {
             // Go back button
-            IconButton(onClick = { navController.popBackStack() }) {
+            IconButton(onClick = { navController.navigate(ToolbarRoutes.HomeScreen.route) }) {
                 Icon(
                     painter = painterResource(R.drawable.icon_arrow_back),
                     contentDescription = stringResource(R.string.contentDescBack)
