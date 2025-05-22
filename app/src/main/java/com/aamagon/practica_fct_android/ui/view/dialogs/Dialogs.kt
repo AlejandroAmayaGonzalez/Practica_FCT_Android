@@ -78,8 +78,15 @@ fun DatePickerDialog(
                 onClick = {
                     onDateSelected(datePickerState.selectedDateMillis)
                     onDismiss
-                    dateString.value = dateFormat
-                        .format(Date(datePickerState.selectedDateMillis!!)).toString()
+                    /* If the user clicks accept before pick a date set the actual
+                    in the filter */
+                    if (datePickerState.selectedDateMillis != null){
+                        dateString.value = dateFormat
+                            .format(Date(datePickerState.selectedDateMillis!!)).toString()
+                    }else{
+                        dateString.value = dateFormat
+                            .format(Date()).toString()
+                    }
                 },
                 colors = ButtonDefaults.textButtonColors(
                     containerColor = LightGreen,
