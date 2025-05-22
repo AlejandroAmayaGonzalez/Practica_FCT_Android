@@ -57,7 +57,8 @@ import kotlin.math.roundToInt
 @Composable
 fun FilterBillsScreen(
     navController: NavController,
-    billsViewModel: BillsViewModel
+    billsViewModel: BillsViewModel,
+    states: States
 ){
     Scaffold (
         topBar = { MainToolBar(navController) },
@@ -65,7 +66,9 @@ fun FilterBillsScreen(
     ){ scafPad ->
         FilterBillsContent(
             modifier = Modifier.padding(scafPad),
-            navController, billsViewModel)
+            navController = navController,
+            billsViewModel = billsViewModel,
+            states = states)
     }
 }
 
@@ -74,10 +77,9 @@ fun FilterBillsScreen(
 fun FilterBillsContent(
     modifier: Modifier = Modifier,
     navController: NavController,
-    billsViewModel: BillsViewModel
+    billsViewModel: BillsViewModel,
+    states: States
 ){
-    val states = States()
-
     // Scroll State
     val scroll = rememberScrollState()
     LaunchedEffect(Unit) { scroll.animateScrollTo(100) }

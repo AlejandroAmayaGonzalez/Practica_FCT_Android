@@ -13,6 +13,7 @@ import com.aamagon.practica_fct_android.ui.view.screens.HomeScreen
 import com.aamagon.practica_fct_android.ui.view.screens.SmartSolarScreen
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.view.navigation.ToolbarRoutes
+import com.aamagon.practica_fct_android.ui.view.screens.States
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -22,6 +23,9 @@ fun MainApp(
 ){
 
     val navController = rememberNavController()
+
+    // Filters states
+    val states = States()
 
     Scaffold (
         topBar = { MainToolBar(navController) },
@@ -37,7 +41,7 @@ fun MainApp(
                     SmartSolarScreen(navController)
                 }
                 composable(route = ToolbarRoutes.FilterBillsScreen.route) {
-                    FilterBillsScreen(navController, billsViewModel)
+                    FilterBillsScreen(navController, billsViewModel, states)
                 }
             }
         }
