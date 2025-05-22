@@ -1,7 +1,9 @@
 package com.aamagon.practica_fct_android.ui.view.screens
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +33,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,19 +55,27 @@ import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 import kotlin.math.roundToInt
 
 @Composable
-fun FilterBillsScreen(navController: NavController, billsViewModel: BillsViewModel){
+fun FilterBillsScreen(
+    navController: NavController,
+    billsViewModel: BillsViewModel
+){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
-        FilterBillsContent(modifier = Modifier.padding(scafPad), navController, billsViewModel)
+        FilterBillsContent(
+            modifier = Modifier.padding(scafPad),
+            navController, billsViewModel)
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun FilterBillsContent(modifier: Modifier = Modifier, navController: NavController, billsViewModel: BillsViewModel){
-
+fun FilterBillsContent(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    billsViewModel: BillsViewModel
+){
     val states = States()
 
     // Scroll State
@@ -203,6 +214,10 @@ fun CheckBoxFilter(states: States) {
 
 @Composable
 fun FilterButtons(states: States, billsViewModel: BillsViewModel, navController: NavController) {
+    // Toast components for an incorrect date range
+    val context = LocalContext.current
+    val msg = stringResource(R.string.incdateRange)
+
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth().padding(16.dp)
@@ -213,6 +228,8 @@ fun FilterButtons(states: States, billsViewModel: BillsViewModel, navController:
                 if (states.datesHaveACorrectRange()){
                     billsViewModel.applyFilters(states)
                     navController.navigate(ToolbarRoutes.BillsScreen.route)
+                }else{
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                 }
             },
             colors = ButtonDefaults.buttonColors(containerColor = LightGreen)
@@ -248,12 +265,15 @@ fun Divider(){
 
 @Composable
 fun CheckBoxRow(state: MutableState<Boolean>, type: String){
-    Row ( verticalAlignment = Alignment.CenterVertically ) {
-        Text( text = type )
+    Row (
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.clickable(onClick = { state.value = !state.value })
+    ) {
         Checkbox(
             checked = state.value,
             onCheckedChange = { state.value = it },
             colors = CheckboxDefaults.colors( checkedColor = Green )
         )
+        Text( text = type )
     }
 }

@@ -76,5 +76,6 @@
     <string name="enable">Mocks activados</string>
     <string name="disable">Mocks desactivados</string>
     <string name="toastErr">No hay datos disponibles</string>
+    <string name="incdateRange">El rango de fechas es incorrecto</string>
 
 </resources>
