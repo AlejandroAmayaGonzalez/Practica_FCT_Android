@@ -11,6 +11,8 @@ import com.aamagon.practica_fct_android.domain.model.Bill
 import com.aamagon.practica_fct_android.ui.view.screens.States
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -60,6 +62,31 @@ class BillsViewModel @Inject constructor(
                 _noMatches.postValue(true)
             }
         }
+    }
+
+    // Function that returns a date with this style: "28 Ago 2020"
+    fun billCardDateFormat(date: String): String{
+        val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val parsedDate = LocalDate.parse(date, format)
+
+        // Format the months like Ene, Feb, Mar...
+        val month = when (parsedDate.month.toString()){
+            "JANUARY" -> "Ene"
+            "FEBRUARY" -> "Feb"
+            "MARCH" -> "Mar"
+            "APRIL" -> "Abr"
+            "MAY" -> "May"
+            "JUNE" -> "Jun"
+            "JULY" -> "Jul"
+            "AUGUST" -> "Ago"
+            "SEPTEMBER" -> "Sep"
+            "OCTOBER" -> "Oct"
+            "NOVEMBER" -> "Nov"
+            "DECEMBER" -> "Dec"
+            else -> ""
+        }
+
+        return "${parsedDate.dayOfMonth} $month ${parsedDate.year}"
     }
 
     fun resetNoMatchValue() = _noMatches.postValue(false)
