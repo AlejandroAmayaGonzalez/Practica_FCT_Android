@@ -52,7 +52,6 @@ import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.view.dialogs.DatePickerDialog
 import com.aamagon.practica_fct_android.ui.view.navigation.ToolbarRoutes
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
-import kotlin.math.roundToInt
 
 @Composable
 fun FilterBillsScreen(
@@ -94,7 +93,7 @@ fun FilterBillsContent(
         ) {
             DateFilter(states)
             Divider()
-            AmountFilter(states)
+            AmountFilter(states, billsViewModel)
             Divider()
             CheckBoxFilter(states)
             Divider()
@@ -152,9 +151,14 @@ fun DateCol(desc: String, dateString: MutableState<String>,
     }
 }
 
+@SuppressLint("DefaultLocale")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AmountFilter(states: States){
+fun AmountFilter(states: States, billsViewModel: BillsViewModel){
+
+    val biggestQua = billsViewModel.getBiggestQuantity()
+    states.maxSlider = biggestQua.toDouble()
+
     Column ( modifier = Modifier.fillMaxHeight().padding(16.dp) ) {
         Text(
             text = stringResource(R.string.titleAmountFilter),
@@ -167,16 +171,17 @@ fun AmountFilter(states: States){
         Row( horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth() ) {
             Text( text = "1€" )
             Text(
-                text = "1€ - ${states.sliderPos.floatValue.roundToInt()}€",
+                text = "1€ - ${String.format("%.2f", states.sliderPos.floatValue)}€",
                 color = LightGreen
             )
-            Text( text = "300€" )
+            Text( text = "${biggestQua}€")
         }
 
         Slider(
             value = states.sliderPos.floatValue,
             onValueChange = { states.sliderPos.floatValue = it },
-            valueRange = 1f..300f,
+            // From 1€ to the most expensive bill
+            valueRange = 1f..biggestQua,
             colors = SliderDefaults.colors(
                 activeTickColor = MainToolbarBackground,
                 inactiveTickColor = MainToolbarBackground,

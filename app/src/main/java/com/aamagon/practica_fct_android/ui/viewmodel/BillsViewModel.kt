@@ -89,6 +89,26 @@ class BillsViewModel @Inject constructor(
         return "${parsedDate.dayOfMonth} $month ${parsedDate.year}"
     }
 
+    // Function that returns the highest quantity of the list
+    fun getBiggestQuantity(): Float{
+        if (billsList.value?.isNotEmpty() == true){
+            // Size of the list
+            val size = billsList.value?.size?.minus(1) ?: 0
+
+            var res = 0.0
+
+            for (i in 0..size){
+                var value = billsList.value!![i].quantity
+                if (value > res) res = value
+            }
+
+            return res.toFloat()
+        }
+
+        return 1f
+    }
+
+    // Gets and sets
     fun resetNoMatchValue() = _noMatches.postValue(false)
     fun changeValuePref(value: Boolean) = prefsManagementUseCase.setValuePref(value)
     fun getValuePref(): Boolean = prefsManagementUseCase.getValuePref()

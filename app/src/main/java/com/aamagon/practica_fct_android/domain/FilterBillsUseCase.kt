@@ -1,7 +1,6 @@
 package com.aamagon.practica_fct_android.domain
 
 import android.content.Context
-import android.util.Log
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.data.Repository
 import java.time.LocalDate
@@ -50,7 +49,6 @@ class FilterBillsUseCase @Inject constructor(
                     context.getString(R.string.filPlan), it.status)
             }
 
-        Log.e("res", "${result.toList()}")
         return result.toList()
     }
 
@@ -88,7 +86,7 @@ class FilterBillsUseCase @Inject constructor(
     }
 
     private fun sliderFilter(states: States, quantity: Double): Boolean{
-        val sliderVal = states.sliderPos.floatValue.toDouble()
+        val sliderVal = states.sliderPos.floatValue.toDouble() + 0.05
 
         return if (states.sliderPos.floatValue != states.minSlider.toFloat()){
             quantity >= 1.0 && quantity <= sliderVal
