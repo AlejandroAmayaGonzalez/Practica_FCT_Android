@@ -14,6 +14,7 @@ val Black = Color(0xFF000000)
 val LightGreen = Color(0xFF8BC34A)
 val White = Color(0xFFFFFFFF)
 val Green = Color(0xFF5EAF4C)
+val Red = Color(0xFFF44336)
 
 // MainToolbar background
 val MainToolbarBackground = Color(0xFFB4FF61)

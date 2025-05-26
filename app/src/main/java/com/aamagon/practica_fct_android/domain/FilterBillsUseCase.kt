@@ -86,7 +86,7 @@ class FilterBillsUseCase @Inject constructor(
     }
 
     private fun sliderFilter(states: States, quantity: Double): Boolean{
-        val sliderVal = states.sliderPos.floatValue.toDouble()
+        val sliderVal = states.sliderPos.floatValue.toDouble() + 0.05
 
         return if (states.sliderPos.floatValue != states.minSlider.toFloat()){
             quantity >= 1.0 && quantity <= sliderVal

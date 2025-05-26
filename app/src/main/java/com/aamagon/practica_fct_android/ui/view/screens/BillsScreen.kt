@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +35,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.domain.model.Bill
+import com.aamagon.practica_fct_android.ui.theme.Black
+import com.aamagon.practica_fct_android.ui.theme.Red
+import com.aamagon.practica_fct_android.ui.theme.White
 import com.aamagon.practica_fct_android.ui.view.dialogs.BillDialog
 import com.aamagon.practica_fct_android.ui.view.navigation.BillsToolbar
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
@@ -84,9 +88,11 @@ fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
     ){
         items (billList.value) { bill ->
             BillCard(
-                bill = bill
+                bill = bill,
+                formattedDate = billsViewModel.billCardDateFormat(bill.date)
             )
-            Spacer( modifier = Modifier.height(8.dp) )
+
+            Divider()
         }
     }
 
@@ -99,13 +105,14 @@ fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
 }
 
 @Composable
-fun BillCard(bill: Bill){
+fun BillCard(bill: Bill, formattedDate: String){
 
     // Variable to control when the dialog is shown
     var show = rememberSaveable { mutableStateOf(false) }
     val priceBill = bill.quantity.toString()
 
     Card (
+        colors = CardDefaults.cardColors(containerColor = White),
         modifier = Modifier.height(100.dp)
             .clickable(onClick = { show.value = true })
     ) {
@@ -115,12 +122,15 @@ fun BillCard(bill: Bill){
             ) {
                 Column ( modifier = Modifier.align(Alignment.Center) ) {
                     Text(
-                        text = bill.date,
+                        text = formattedDate,
                         fontSize = 30.sp
                     )
                     Text(
-                        text = bill.status,
-                        fontSize = 20.sp
+                        // If the status is paid don't show anything
+                        text = if (bill.status != stringResource(R.string.filPaid)) bill.status else "",
+                        fontSize = 20.sp,
+                        // If the status is pending payment the font color is red
+                        color = if (bill.status == stringResource(R.string.filWaiting)) Red else Black
                     )
                 }
             }

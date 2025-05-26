@@ -11,6 +11,8 @@ import com.aamagon.practica_fct_android.domain.model.Bill
 import com.aamagon.practica_fct_android.ui.view.screens.States
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -62,6 +64,51 @@ class BillsViewModel @Inject constructor(
         }
     }
 
+    // Function that returns a date with this style: "28 Ago 2020"
+    fun billCardDateFormat(date: String): String{
+        val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val parsedDate = LocalDate.parse(date, format)
+
+        // Format the months like Ene, Feb, Mar...
+        val month = when (parsedDate.month.toString()){
+            "JANUARY" -> "Ene"
+            "FEBRUARY" -> "Feb"
+            "MARCH" -> "Mar"
+            "APRIL" -> "Abr"
+            "MAY" -> "May"
+            "JUNE" -> "Jun"
+            "JULY" -> "Jul"
+            "AUGUST" -> "Ago"
+            "SEPTEMBER" -> "Sep"
+            "OCTOBER" -> "Oct"
+            "NOVEMBER" -> "Nov"
+            "DECEMBER" -> "Dec"
+            else -> ""
+        }
+
+        return "${parsedDate.dayOfMonth} $month ${parsedDate.year}"
+    }
+
+    // Function that returns the highest quantity of the list
+    fun getBiggestQuantity(): Float{
+        if (billsList.value?.isNotEmpty() == true){
+            // Size of the list
+            val size = billsList.value?.size?.minus(1) ?: 0
+
+            var res = 0.0
+
+            for (i in 0..size){
+                var value = billsList.value!![i].quantity
+                if (value > res) res = value
+            }
+
+            return res.toFloat()
+        }
+
+        return 1f
+    }
+
+    // Gets and sets
     fun resetNoMatchValue() = _noMatches.postValue(false)
     fun changeValuePref(value: Boolean) = prefsManagementUseCase.setValuePref(value)
     fun getValuePref(): Boolean = prefsManagementUseCase.getValuePref()
