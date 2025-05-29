@@ -20,6 +20,14 @@ class FilterBillsUseCase @Inject constructor(
         var list = repository.getAllBillsFromDatabase().bills
         val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
+        val checboxCategories = listOfNotNull(
+            if (states.paidChecked.value) context.getString(R.string.filPaid) else null,
+            if (states.cancelledChecked.value) context.getString(R.string.filCancel) else null,
+            if (states.fixedFeeChecked.value) context.getString(R.string.filFixed) else null,
+            if (states.waitingChecked.value) context.getString(R.string.filWaiting) else null,
+            if (states.paymentPlanChecked.value) context.getString(R.string.filPlan) else null,
+        )
+
         var result = list.asSequence()
             .filter {
                 var date = LocalDate.parse(it.date, format)
@@ -29,24 +37,9 @@ class FilterBillsUseCase @Inject constructor(
                 sliderFilter(states, it.quantity)
             }
             .filter {
-                checkBoxFilter(states.paidChecked.value,
-                    context.getString(R.string.filPaid), it.status)
-            }
-            .filter {
-                checkBoxFilter(states.cancelledChecked.value,
-                    context.getString(R.string.filCancel), it.status)
-            }
-            .filter {
-                checkBoxFilter(states.fixedFeeChecked.value,
-                    context.getString(R.string.filFixed), it.status)
-            }
-            .filter {
-                checkBoxFilter(states.waitingChecked.value,
-                    context.getString(R.string.filWaiting), it.status)
-            }
-            .filter {
-                checkBoxFilter(states.paymentPlanChecked.value,
-                    context.getString(R.string.filPlan), it.status)
+                if (checboxCategories.isNotEmpty()){
+                    it.status in checboxCategories
+                }else { true }
             }
 
         return result.toList()
@@ -93,15 +86,5 @@ class FilterBillsUseCase @Inject constructor(
         }else{
             quantity >= 1.0 && quantity <= states.maxSlider
         }
-    }
-
-    private fun checkBoxFilter(
-        checkboxState: Boolean,
-        stringCompared: String,
-        status: String
-    ): Boolean{
-        return if (checkboxState){
-            status.equals(stringCompared, true)
-        } else true
     }
 }
