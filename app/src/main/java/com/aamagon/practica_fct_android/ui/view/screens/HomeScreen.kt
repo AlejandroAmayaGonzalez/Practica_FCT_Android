@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
+import com.aamagon.practica_fct_android.ui.theme.White
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
 
@@ -27,6 +28,7 @@ fun HomeScreen(navController: NavController, billsViewModel: BillsViewModel){
     Scaffold (
         topBar = { MainToolBar(navController) },
         modifier = Modifier.fillMaxSize(),
+        containerColor = White,
         content = {scafPad ->
             HomeContent(modifier = Modifier.padding(scafPad), billsViewModel)
         }

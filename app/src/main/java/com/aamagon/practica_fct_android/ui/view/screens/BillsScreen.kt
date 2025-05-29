@@ -3,6 +3,7 @@ package com.aamagon.practica_fct_android.ui.view.screens
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -83,6 +84,7 @@ fun BillsList(billsViewModel: BillsViewModel, scafPad: PaddingValues ){
 
     LazyColumn (
         modifier = Modifier.fillMaxSize()
+            .background(White)
             .padding(scafPad)
             .padding(16.dp)
     ){
