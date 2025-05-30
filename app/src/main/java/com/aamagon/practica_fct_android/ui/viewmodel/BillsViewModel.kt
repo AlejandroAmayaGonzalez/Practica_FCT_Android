@@ -1,5 +1,6 @@
 package com.aamagon.practica_fct_android.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,6 +36,7 @@ class BillsViewModel @Inject constructor(
 
     // An instance to save the first list received
     private var original = emptyList<Bill>()
+    var biggestQua: Float = 0F
 
     init {
         viewModelScope.launch {
@@ -47,6 +49,8 @@ class BillsViewModel @Inject constructor(
             if (result.isNotEmpty()){
                 _billsList.postValue(result)
             }
+
+            biggestQua = getBiggestQuantity(result)
 
             _isLoading.postValue(false)
         }
@@ -90,15 +94,16 @@ class BillsViewModel @Inject constructor(
     }
 
     // Function that returns the highest quantity of the list
-    fun getBiggestQuantity(): Float{
-        if (billsList.value?.isNotEmpty() == true){
+    private fun getBiggestQuantity(list: List<Bill>): Float{
+        if (list.isNotEmpty()){
+            Log.e("ENTRA POR AQUI", "ENTRA POR AQUI")
             // Size of the list
-            val size = billsList.value?.size?.minus(1) ?: 0
+            val size = list.size - 1
 
             var res = 0.0
 
             for (i in 0..size){
-                var value = billsList.value!![i].quantity
+                var value = list[i].quantity
                 if (value > res) res = value
             }
 

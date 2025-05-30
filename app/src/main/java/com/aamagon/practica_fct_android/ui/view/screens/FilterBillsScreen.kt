@@ -156,8 +156,7 @@ fun DateCol(desc: String, dateString: MutableState<String>,
 @Composable
 fun AmountFilter(states: States, billsViewModel: BillsViewModel){
 
-    val biggestQua = billsViewModel.getBiggestQuantity()
-    states.maxSlider = biggestQua.toDouble()
+    states.maxSlider = billsViewModel.biggestQua.toDouble()
 
     Column ( modifier = Modifier.fillMaxHeight().padding(16.dp) ) {
         Text(
@@ -174,14 +173,14 @@ fun AmountFilter(states: States, billsViewModel: BillsViewModel){
                 text = "1€ - ${String.format("%.2f", states.sliderPos.floatValue)}€",
                 color = LightGreen
             )
-            Text( text = "${biggestQua}€")
+            Text( text = "${billsViewModel.biggestQua}€")
         }
 
         Slider(
             value = states.sliderPos.floatValue,
             onValueChange = { states.sliderPos.floatValue = it },
             // From 1€ to the most expensive bill
-            valueRange = 1f..biggestQua,
+            valueRange = 1f..billsViewModel.biggestQua,
             colors = SliderDefaults.colors(
                 activeTickColor = MainToolbarBackground,
                 inactiveTickColor = MainToolbarBackground,
