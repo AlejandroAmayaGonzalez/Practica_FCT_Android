@@ -1,6 +1,6 @@
 package com.aamagon.practica_fct_android.ui.viewmodel
 
-import android.util.Log
+import java.util.Locale
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -70,47 +70,24 @@ class BillsViewModel @Inject constructor(
 
     // Function that returns a date with this style: "28 Ago 2020"
     fun billCardDateFormat(date: String): String{
-        val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-        val parsedDate = LocalDate.parse(date, format)
+        val inFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.getDefault())
+        val outFormat = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault())
 
-        // Format the months like Ene, Feb, Mar...
-        val month = when (parsedDate.month.toString()){
-            "JANUARY" -> "Ene"
-            "FEBRUARY" -> "Feb"
-            "MARCH" -> "Mar"
-            "APRIL" -> "Abr"
-            "MAY" -> "May"
-            "JUNE" -> "Jun"
-            "JULY" -> "Jul"
-            "AUGUST" -> "Ago"
-            "SEPTEMBER" -> "Sep"
-            "OCTOBER" -> "Oct"
-            "NOVEMBER" -> "Nov"
-            "DECEMBER" -> "Dec"
-            else -> ""
-        }
+        val parsedDate = LocalDate.parse(date, inFormat)
 
-        return "${parsedDate.dayOfMonth} $month ${parsedDate.year}"
+        return parsedDate.format(outFormat)
     }
 
     // Function that returns the highest quantity of the list
     private fun getBiggestQuantity(list: List<Bill>): Float{
-        if (list.isNotEmpty()){
-            Log.e("ENTRA POR AQUI", "ENTRA POR AQUI")
-            // Size of the list
-            val size = list.size - 1
+        var res = 0.0
 
-            var res = 0.0
-
-            for (i in 0..size){
-                var value = list[i].quantity
-                if (value > res) res = value
-            }
-
-            return res.toFloat()
+        list.forEach {
+            var value = it.quantity
+            if (value > res) res = value
         }
 
-        return 1f
+        return res.toFloat()
     }
 
     // Gets and sets
