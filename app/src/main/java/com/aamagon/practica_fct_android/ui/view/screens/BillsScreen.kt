@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,11 +15,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,6 +40,7 @@ import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
 import com.aamagon.practica_fct_android.domain.model.Bill
 import com.aamagon.practica_fct_android.ui.theme.Black
+import com.aamagon.practica_fct_android.ui.theme.LightGreen
 import com.aamagon.practica_fct_android.ui.theme.Red
 import com.aamagon.practica_fct_android.ui.theme.White
 import com.aamagon.practica_fct_android.ui.view.dialogs.BillDialog
@@ -51,6 +55,20 @@ fun BillsScreen(navController: NavController, billsViewModel: BillsViewModel){
         modifier = Modifier.fillMaxSize()
     ){ scafPad ->
         BillContent(modifier = Modifier.padding(scafPad), navController, billsViewModel)
+
+        var loading = billsViewModel.isLoading.observeAsState(false)
+        if (loading.value){
+            Column (
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                CircularProgressIndicator(
+                    color = LightGreen,
+                    modifier = Modifier.size(100.dp)
+                )
+            }
+        }
     }
 }
 
@@ -125,6 +143,7 @@ fun BillCard(bill: Bill, formattedDate: String){
                 Column ( modifier = Modifier.align(Alignment.Center) ) {
                     Text(
                         text = formattedDate,
+                        color = Black,
                         fontSize = 30.sp
                     )
                     Text(
@@ -143,6 +162,7 @@ fun BillCard(bill: Bill, formattedDate: String){
                 Row ( modifier = Modifier.align(Alignment.Center) ) {
                     Text(
                         text = "$priceBill €",
+                        color = Black,
                         fontSize = 30.sp
                     )
 

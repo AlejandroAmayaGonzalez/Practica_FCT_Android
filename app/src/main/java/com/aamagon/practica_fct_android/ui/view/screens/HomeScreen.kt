@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.aamagon.practica_fct_android.R
+import com.aamagon.practica_fct_android.ui.theme.Black
 import com.aamagon.practica_fct_android.ui.theme.White
 import com.aamagon.practica_fct_android.ui.view.navigation.MainToolBar
 import com.aamagon.practica_fct_android.ui.viewmodel.BillsViewModel
@@ -51,7 +52,10 @@ fun HomeContent(modifier: Modifier = Modifier, billsViewModel: BillsViewModel){
         )
 
         // Show the current state of mocks
-        Text(text = if (checked.value) stringResource(R.string.enable) else stringResource(R.string.disable))
+        Text(
+            text = if (checked.value) stringResource(R.string.enable) else stringResource(R.string.disable),
+            color = Black
+        )
 
         Switch(
             checked = checked.value,
